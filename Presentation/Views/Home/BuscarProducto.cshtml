@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Buscar Productos</h1>
+<form action="BuscarProducto" method="get">
+    <div class="form-group">
+        <label for="id">Id Producto</label>
+        <input type="text" class="form-control" id="id" name="id" placeholder="Ingrese identificador del producto" required>
+    </div>
+    <button type="submit" class="btn btn-dark">Buscar</button>
+</form>
+
+<hr />
+
+@if (ViewBag.ventana == "uno")
+{
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://www.lg.com/co/images/televisores/MD06148836/gallery/1100_01.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@ViewBag.Producto.Nombre</h5>
+            <p class="card-text">Descripcion: @ViewBag.Producto.Descripcion</p>
+            <p class="card-text">FechaIngreso: @ViewBag.Producto.FechaIngreso</p>
+            <p class="card-text">TiempoUso: @ViewBag.Producto.TiempoDeUso</p>
+            <p class="card-text">Categoria: @ViewBag.Producto.Categoria</p>
+        </div>
+    </div>
+}
+else if (ViewBag.ventana == "todos")
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Fecha Ingreso</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Referencia</th>
+                <th scope="col">Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Domain.Producto.Producto p in ViewBag.productos)
+            {
+                <tr>
+                    <th scope="row">@p.Id</th>
+                    <td>@p.Descripcion</td>
+                    <td>@p.FechaIngreso</td>
+                    <td>@p.Marca</td>
+                    <td>@p.Referencia</td>
+                    <td>@p.Categoria</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+else
+{
+<div class="alert alert-danger" role="alert">
+    @ViewBag.ventana
+</div>
+}
+

@@ -1,0 +1,33 @@
+[
+  {
+    "Id": 1,
+    "Nombre": "ONU",
+    "Direccion": "direccion",
+    "Asignaciones": [
+      {
+        "Id": 1,
+        "Descripcion": "compu",
+        "FechaIngreso": "0001-01-01T00:00:00",
+        "Marca": "HP",
+        "TiempoDeUso": 0,
+        "Categoria": "Computadores",
+        "Referencia": "EliteBook",
+        "Precio": 1000,
+        "Nombre": "HP EliteBook"
+      }
+    ],
+    "Solicitudes": [
+      {
+        "Id": 1,
+        "Descripcion": "compu",
+        "FechaIngreso": "0001-01-01T00:00:00",
+        "Marca": "HP",
+        "TiempoDeUso": 0,
+        "Categoria": "Computadores",
+        "Referencia": "EliteBook",
+        "Precio": 1000,
+        "Nombre": "HP EliteBook"
+      }
+    ]
+  }
+]

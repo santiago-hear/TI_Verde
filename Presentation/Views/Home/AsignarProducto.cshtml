@@ -1,0 +1,100 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h1>Asignar Producto</h1>
+<hr />
+<h3>Asignar para: </h3>
+<br />
+<div class="row">
+    <div class="col">
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalInstitucion">Institucion</button>
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalTaller">Taller</button>
+    </div>
+    <div class="col">
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#ModalDestruccion">Destruccion</button>
+    </div>
+    <div class="col">
+        <a href="ProductosEnVenta" class="btn btn-dark">Poner en Venta</a>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="ModalInstitucion" tabindex="-1" role="dialog" aria-labelledby="ModalInstitucionTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Asignar para Institucion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="AsignarAInstitucion" method="post">
+                    <div class="form-group">
+                        <label for="producto">Producto:</label>
+                        <select class="form-control" id="producto" name="idProducto">
+                            @foreach (Domain.Producto.Producto p in ViewBag.productos)
+                            {
+                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Categoria </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="institucion">Institucion: </label>
+                        <select class="form-control" id="institucion" name="idInstitucion">
+                            @foreach (Domain.Institucion.Institucion i in ViewBag.instituciones)
+                            {
+                                <option value="@i.Id">@i.Id @i.Nombre, direccion: @i.Direccion </option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Asignar a Institucion</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalTaller" tabindex="-1" role="dialog" aria-labelledby="ModalTallerTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Asignar para Taller</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="AsignarATaller" method="post">
+                    <div class="form-group">
+                        <label for="producto">Producto:</label>
+                        <select class="form-control" id="producto" name="idProducto">
+                            @foreach (Domain.Producto.Producto p in ViewBag.productos)
+                            {
+                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Categoria </option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="taller">Taller: </label>
+                        <select class="form-control" id="taller" name="idtaller">
+                            @foreach (Domain.Area.Taller t in ViewBag.talleres)
+                            {
+                                <option value="@t.Id">@t.Id @t.Nombre, direccion: @t.Direccion </option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Asignar a Taller</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

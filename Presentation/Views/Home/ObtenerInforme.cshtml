@@ -1,0 +1,47 @@
+﻿
+
+<h1>Obtener Informe</h1>
+<form action="ObtenerInforme" method="get">
+    <div class="form-group">
+        <label for="mes">Mes de informe: </label>
+        <input type="month" class="form-group" for="mes" name="mes" placeholder="Ingrese mes de Informe" />
+    </div>
+    <button type="submit" class="btn btn-dark">Obtener Informe</button>
+</form>
+
+
+@if (@ViewBag.productos != null)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Fecha Ingreso</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Referencia</th>
+            <th scope="col">Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Domain.Producto.Producto p in ViewBag.productos)
+        {
+            <tr>
+                <th scope="row">@p.Id</th>
+                <td>@p.Descripcion</td>
+                <td>@p.FechaIngreso</td>
+                <td>@p.Marca</td>
+                <td>@p.Referencia</td>
+                <td>@p.Categoria</td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
+<hr/>
+@if (@ViewBag.message != null)
+{
+    <div class="alert alert-dark" role="alert">
+        @ViewBag.message
+    </div>
+}
