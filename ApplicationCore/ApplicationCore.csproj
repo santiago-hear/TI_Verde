@@ -9,4 +9,15 @@
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ConsultarAsignacion\" />
+    <Folder Include="ConsultarInventario\" />
+    <Folder Include="GestionarInspeccion\" />
+    <Folder Include="ConfigurarProductos\" />
+    <Folder Include="RealizarSeguimiento\" />
+    <Folder Include="RealizarPago\" />
+    <Folder Include="RegistrarReparacion\" />
+    <Folder Include="ObtenerPresupuestoEstimado\" />
+  </ItemGroup>
+
 </Project>
