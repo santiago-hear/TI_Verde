@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Institucion
+namespace Domain.Usuario
 {
-    public class Institucion
+    public class Institucion : Usuario
     {
-        public Institucion() { }
-        public Institucion (int id, string nombre, string direccion)
-        {
-            Id = id;
-            Nombre = nombre;
-            Direccion = direccion;
-            Asignaciones = new List<Producto.Producto>();
-            Solicitudes = new List<Producto.Producto>();
-        }
-        public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Direccion { get; set; }
+        public string Nit { get; set; }
         public List<Producto.Producto> Asignaciones { get; set; }
         public List<Producto.Producto> Solicitudes { get; set; }
+        public Institucion() { }
+        public Institucion(int id, string nombre, string nit, string telefono, string correo, string celular, string direccion, string contrasena)
+        { 
+            this.Id = id;
+            this.Nombre = nombre;
+            this.Nit = nit;
+            this.Telefono = telefono;
+            this.Correo = correo;
+            this.Celular = celular;
+            this.Direccion = direccion;
+            this.Contrasena = contrasena;
+            this.Asignaciones = new List<Producto.Producto>();
+            this.Solicitudes = new List<Producto.Producto>();
+        }
     }
 }

@@ -3,10 +3,20 @@ using System.Collections.Generic;
 using System.Text;
 using Domain.Usuario;
 
-namespace Domain.Area
+namespace Domain.Kiosco
 {
-    public class Kiosco: Area
+    public class Kiosco
     {
-        private List<AdminKiosco> administradoresK { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Direccion { get; set; }
+        public List<Producto.Producto> ProductosRecibidos { get; set; }
+        public Kiosco() { }
+        public Kiosco(int Id, string nombre, string direccion) 
+        {
+            this.Id = Id;
+            this.Nombre = nombre;
+            this.Direccion = direccion;
+        }
     }
 }
