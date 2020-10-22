@@ -15,10 +15,10 @@ namespace Persistence.Repositories
             List<Usuario> usuarios;
             string usuariosString = File.ReadAllText(pathUsuarios);
             usuarios = System.Text.Json.JsonSerializer.Deserialize<List<Usuario>>(usuariosString);
-            Usuario us = usuarios.FirstOrDefault(u => u.Cedula == usuario.Cedula);
+            Usuario us = usuarios.FirstOrDefault(u => u.Id == usuario.Id);
             if (us == null)
             {
-                throw new UsuarioYaExisteException("El usuario con cedula" + usuario.Cedula + " ya se encuentra Registrado");
+                throw new UsuarioYaExisteException("El usuario con cedula" + usuario.Id + " ya se encuentra Registrado");
             }
             usuarios.Add(usuario);
             string jsonString = System.Text.Json.JsonSerializer.Serialize(usuarios);

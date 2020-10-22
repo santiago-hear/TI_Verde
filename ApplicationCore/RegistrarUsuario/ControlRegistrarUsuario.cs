@@ -10,12 +10,12 @@ namespace ApplicationCore.RegistrarUsuario
     {
         IRepositorioRegistrarUsuario repo = new RepositorioRegistrarUsuario();
 
-        public void RegistrarUsuario(string cedula, string nombre,string apellido, string correo, string celular, string contraseña)
+        public void RegistrarUsuario(string cedula, string nombre,string apellido, string correo, string celular, string contrasena)
         {
             int id = repo.GetMaxId() + 1;
             try
             {
-                Usuario usuario = new Usuario(id, cedula, nombre, apellido, correo, celular, contraseña);
+                Usuario usuario = new Cliente(id, nombre, apellido, "0000", "00000",correo , celular,"Calle 1", contrasena);
                 repo.registrarUsusario(usuario);
             }
             catch(UsuarioYaExisteException ex)

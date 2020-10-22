@@ -37,14 +37,14 @@
                         <select class="form-control" id="producto" name="idProducto">
                             @foreach (Domain.Producto.Producto p in ViewBag.productos)
                             {
-                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Categoria </option>
+                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Marca </option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="institucion">Institucion: </label>
                         <select class="form-control" id="institucion" name="idInstitucion">
-                            @foreach (Domain.Institucion.Institucion i in ViewBag.instituciones)
+                            @foreach (Domain.Usuario.Institucion i in ViewBag.instituciones)
                             {
                                 <option value="@i.Id">@i.Id @i.Nombre, direccion: @i.Direccion </option>
                             }
@@ -76,14 +76,14 @@
                         <select class="form-control" id="producto" name="idProducto">
                             @foreach (Domain.Producto.Producto p in ViewBag.productos)
                             {
-                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Categoria </option>
+                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Marca </option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="taller">Taller: </label>
                         <select class="form-control" id="taller" name="idtaller">
-                            @foreach (Domain.Area.Taller t in ViewBag.talleres)
+                            @foreach (Domain.Taller.Taller t in ViewBag.talleres)
                             {
                                 <option value="@t.Id">@t.Id @t.Nombre, direccion: @t.Direccion </option>
                             }

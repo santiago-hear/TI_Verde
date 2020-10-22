@@ -13,7 +13,7 @@
     <Folder Include="ConsultarAsignacion\" />
     <Folder Include="ConsultarInventario\" />
     <Folder Include="GestionarInspeccion\" />
-    <Folder Include="ConfigurarProductos\" />
+    <Folder Include="ConfigurarTipoProducto\" />
     <Folder Include="RealizarSeguimiento\" />
     <Folder Include="RealizarPago\" />
     <Folder Include="RegistrarReparacion\" />

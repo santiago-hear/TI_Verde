@@ -19,7 +19,7 @@ namespace ApplicationCore.PonerProductoEnVenta
                 if (!esta)
                 {
                     Producto producto = repoProd.GetProducto(id);
-                    producto.Precio = precio;
+                    producto.PrecioVenta = precio;
                     repoProdV.PonerEnVenta(producto);
                 }
             }

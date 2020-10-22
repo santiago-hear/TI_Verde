@@ -1,8 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bienvenido a TI VERDE</h1>
+    <hr />
+    <h3> ¿Cómo desea Ingresar? </h3>
+    <div class="mt-4">
+        <a class="btn btn-outline-primary mx-4" asp-area="" asp-controller="Tienda" asp-action="Index">Tienda</a>
+        <a class="btn btn-outline-success mx-4" asp-area="" asp-controller="Cliente" asp-action="Index">Cliente</a>
+        <a class="btn btn-outline-info mx-4" asp-area="" asp-controller="Institucion" asp-action="Index">Institucion/Fundacion</a>
+        <a class="btn btn-outline-dark mx-4" asp-area="" asp-controller="Taller" asp-action="Index">Taller</a>
+    </div>
 </div>

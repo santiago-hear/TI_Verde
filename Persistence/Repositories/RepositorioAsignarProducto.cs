@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Domain.Producto;
-
+using Domain.Usuario;
+using Domain.Taller;
 using System.Linq;
-using Domain.Institucion;
-using Domain.Area;
 
 namespace Persistence.Repositories
 {

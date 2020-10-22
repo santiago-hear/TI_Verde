@@ -20,6 +20,7 @@ namespace Domain.Usuario
             this.Cedula = cedula;
             this.Telefono = telefono;
             this.Correo = correo;
+            this.Celular = celular;
             this.Direccion = direccion;
             this.Contrasena = contrasena;
             this.ProductosRegistrados = new List<Producto.Producto>();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Domain.Producto;
+using Domain.TipoProducto;
 using Persistence.Repositories;
 
 namespace ApplicationCore
@@ -9,7 +10,7 @@ namespace ApplicationCore
     public class ControlGestionarProducto
     {
         IRepositorioGestionarProducto repo = new RepositorioGestionarProducto();
-        public void RegistrarProducto(string descripcion, string marca, int tiempoDeUso, string categoria, string referencia)
+        public void RegistrarProducto(string descripcion, string marca, int tiempoDeUso, TipoProducto categoria, string referencia)
         {
             int id = repo.GetMaxId()+1;
             Producto p = new Producto(id, descripcion, DateTime.Now, marca, tiempoDeUso, categoria, referencia);

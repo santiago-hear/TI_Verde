@@ -1,6 +1,6 @@
-﻿using Domain.Area;
-using Domain.Institucion;
+﻿using Domain.Usuario;
 using Domain.Producto;
+using Domain.Taller;
 using Persistence.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,10 @@ namespace ApplicationCore
     {
         readonly IRepositorioAsignarProducto repoAsignar = new RepositorioAsignarProducto();
         readonly IRepositorioGestionarProducto repoGestionar = new RepositorioGestionarProducto();
+        private List<Producto> productos;
+        private List<Taller> talleres;
+        private List<Institucion> instituciones;
+
         public void AsignarProductoInstitucion(int IdInstitucion, int IdProducto)
         {
             try

@@ -7,7 +7,7 @@
         <select class="form-control" id="producto" name="id">
             @foreach (Domain.Producto.Producto p in ViewBag.productos)
             {
-                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Categoria </option>
+                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Marca </option>
             }
         </select>
     </div>
@@ -47,8 +47,8 @@
                 <td>@p.FechaIngreso</td>
                 <td>@p.Marca</td>
                 <td>@p.Referencia</td>
-                <td>@p.Categoria</td>
-                <td>@p.Precio</td>
+                <td>@p.Marca</td>
+                <td>@p.PrecioVenta</td>
             </tr>
         }
     </tbody>

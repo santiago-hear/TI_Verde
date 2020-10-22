@@ -11,6 +11,7 @@ using Domain.Producto;
 using ApplicationCore.PonerProductoEnVenta;
 using ApplicationCore.RegistrarUsuario;
 using Domain.Usuario;
+using Domain.TipoProducto;
 
 namespace Presentation.Controllers
 {
@@ -49,7 +50,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegistrarProducto(string descripcion, string marca, int tiempoDeUso, string categoria, string referencia)
+        public IActionResult RegistrarProducto(string descripcion, string marca, int tiempoDeUso, TipoProducto categoria, string referencia)
         {
             controlGestionProducto.RegistrarProducto(descripcion, marca, tiempoDeUso, categoria,referencia);
             return View();

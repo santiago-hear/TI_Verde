@@ -1,4 +1,5 @@
-﻿using Domain.Area;
+﻿using Domain.Usuario;
+using Domain.Taller;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,12 +11,12 @@ namespace Domain.Producto
         bool GetProductoEnVenta(int id);
         void PonerEnVenta(Producto producto);
         List<Producto> GetProductosEnVenta();
-        void AsignarAInstitucion(Producto p, Institucion.Institucion i);
-        Institucion.Institucion BuscarInstitucion(int Id);
-        Taller BuscarTaller(int Id);
+        void AsignarAInstitucion(Producto p, Institucion i);
+        Institucion BuscarInstitucion(int Id);
+        Taller.Taller BuscarTaller(int Id);
         void RegistrarDestruccion(Producto p);
-        void AsignarATaller(Producto p, Taller t);
-        List<Taller> getTalleres();
-        List<Institucion.Institucion> getInstituciones();
+        void AsignarATaller(Producto p, Taller.Taller t);
+        List<Taller.Taller> getTalleres();
+        List<Institucion> getInstituciones();
     }
 }

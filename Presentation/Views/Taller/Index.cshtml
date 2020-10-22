@@ -1,0 +1,32 @@
+﻿@{ 
+    ViewData["Title"] = "Taller"; 
+}
+<div>
+    <h1>Bienvenido a TALLER</h1>
+    <hr />
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Taller" asp-action="Index">Taller</a>
+            <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Taller" asp-action="VerAsignaciones">Asignaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Reparaciones</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" asp-area="" asp-controller="Taller" asp-action="VerReparaciones">Mis Reparaciones</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="Taller" asp-action="RegistrarReparacion">Registrar Reparacion</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="Taller" asp-action="RegistarCostoReparacion">Registar Costo de Reparacion</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</div>
