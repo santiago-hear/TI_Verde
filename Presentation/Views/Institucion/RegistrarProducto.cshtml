@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Registrar Producto</h1>
+<form action="RegistrarProducto" method="post">
+    <div class="form-group">
+        <label for="descripcion">Descripcion: </label>
+        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ingrese la descripcion o estado del producto"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="marca">Marca: </label>
+        <input type="text" class="form-control" id="marca" name="marca" placeholder="Ingrese la marca del producto">
+    </div>
+    <div class="form-group">
+        <label for="tiempoDeUso">Tiempo de uso (Meses):</label>
+        <input type="number" class="form-control" id="tiempoDeUso" name="tiempoDeUso" placeholder="Ingrese el tiempo de uso del producto">
+    </div>
+    <div class="form-group">
+        <label for="categoria">Categoria</label>
+        <select class="form-control" id="categoria" name="categoria">
+            <option selected>Celulares</option>
+            <option>Televisores</option>
+            <option>Computadores</option>
+            <option>Electrodomesticos</option>
+            <option>Consolas</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="referencia">Referencia: </label>
+        <input type="text" class="form-control" id="referencia" name="referencia" placeholder="Ingrese la referencia del producto">
+    </div>
+    <button type="submit" class="btn btn-dark">Registrar</button>
+</form>
+
+<p>@ViewBag.Message</p>

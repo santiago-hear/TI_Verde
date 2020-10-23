@@ -15,6 +15,11 @@ namespace Persistence.Repositories
         readonly string pathInstituciones = @"..\Persistence\Data\Instituciones.json";
         readonly string pathTalleres = @"..\Persistence\Data\Talleres.json";
         readonly string pathDestrucciones = @"..\Persistence\Data\Destrucciones.json";
+
+        private List<Producto> productos;
+        private List<Taller> talleres;
+        private List<Institucion> instituciones;
+
         public bool GetProductoEnVenta(int id)
         {
             List<Producto> productos;

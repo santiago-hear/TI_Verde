@@ -12,9 +12,6 @@ namespace ApplicationCore
     {
         readonly IRepositorioAsignarProducto repoAsignar = new RepositorioAsignarProducto();
         readonly IRepositorioGestionarProducto repoGestionar = new RepositorioGestionarProducto();
-        private List<Producto> productos;
-        private List<Taller> talleres;
-        private List<Institucion> instituciones;
 
         public void AsignarProductoInstitucion(int IdInstitucion, int IdProducto)
         {

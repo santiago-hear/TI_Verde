@@ -9,19 +9,28 @@ namespace ApplicationCore
 {
     public class ControlGestionarProducto
     {
-        IRepositorioGestionarProducto repo = new RepositorioGestionarProducto();
+        readonly IRepositorioGestionarProducto repositorioProductos;
+        public List<Producto> productos;
+        public ControlGestionarProducto()
+        {
+            repositorioProductos = new RepositorioGestionarProducto();
+            productos = repositorioProductos.GetAllProductos();
+        }
+        public List<Producto> GetAllProductos()
+        {
+            return this.productos;
+        }
         public void RegistrarProducto(string descripcion, string marca, int tiempoDeUso, TipoProducto categoria, string referencia)
         {
-            int id = repo.GetMaxId()+1;
+            int id = repositorioProductos.GetMaxId()+1;
             Producto p = new Producto(id, descripcion, DateTime.Now, marca, tiempoDeUso, categoria, referencia);
-            repo.RegistrarProducto(p);
+            repositorioProductos.RegistrarProducto(p);
         }
-
         public Producto GetProducto(int id)
         {
             try
             {
-                return repo.GetProducto(id);
+                return repositorioProductos.GetProducto(id);
             }
             catch(ProductoNoExisteException ex)
             {
@@ -29,9 +38,6 @@ namespace ApplicationCore
             }
         }
 
-        public List<Producto> GetAllProductos()
-        {
-            return repo.GetAllProductos();
-        }
+        
     }
 }

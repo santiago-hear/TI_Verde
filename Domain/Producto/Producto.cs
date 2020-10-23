@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Domain.TipoProducto;
 
 namespace Domain.Producto
 {
@@ -29,7 +30,7 @@ namespace Domain.Producto
             this.Referencia = referencia;
             this.PrecioCompra = 0;
             this.PrecioVenta = 0;
-            this.Estado = "inscrito";
+            this.Estado = "Inscrito";
         }
         
     }

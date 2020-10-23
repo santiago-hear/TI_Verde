@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using Domain.Producto;
 using System.Linq;
+using Domain.TipoProducto;
 
 namespace Persistence.Repositories
 {
     public class RepositorioGestionarProducto : IRepositorioGestionarProducto
     {
-        string pathProductos = @"..\Persistence\Data\productos.json";
+        readonly string pathProductos = @"..\Persistence\Data\productos.json";
+        List<Producto> productos;
+        List<TipoProducto> tiposProductos;
+        public List<Producto> GetAllProductos()
+        {
+            string productosString = File.ReadAllText(pathProductos);
+            productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
+            return productos;
+        }
         public void RegistrarProducto(Producto producto)
         {
-            List<Producto> productos;
             string productosString = File.ReadAllText(pathProductos);
             productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
             productos.Add(producto);
@@ -23,7 +30,6 @@ namespace Persistence.Repositories
         public int GetMaxId()
         {
             int maxid = 0;
-            List<Producto> productos;
             string productosString = File.ReadAllText(pathProductos);
             productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
             foreach (Producto p in productos)
@@ -38,7 +44,6 @@ namespace Persistence.Repositories
 
         public Producto GetProducto(int id)
         {
-            List<Producto> productos;
             string productosString = File.ReadAllText(pathProductos);
             productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
             Producto producto = productos.FirstOrDefault(p => p.Id == id);
@@ -50,18 +55,10 @@ namespace Persistence.Repositories
             return producto;
         }
 
-        public List<Producto> GetAllProductos()
-        {
-            List<Producto> productos;
-            string productosString = File.ReadAllText(pathProductos);
-            productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
-
-            return productos;
-        }
+        
 
         public List<Producto> ObtenerInforme(DateTime mes)
         {
-            List<Producto> productos;
             List<Producto> productosDevuelta =  new List<Producto>();
             string productosString = File.ReadAllText(pathProductos);
             productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
