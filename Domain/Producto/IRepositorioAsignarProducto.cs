@@ -11,7 +11,7 @@ namespace Domain.Producto
         bool GetProductoEnVenta(int id);
         void PonerEnVenta(Producto producto);
         List<Producto> GetProductosEnVenta();
-        void AsignarAInstitucion(Producto p, Institucion i);
+        void AsignarAInstitucion(Donacion.Donacion d, Institucion i);
         Institucion BuscarInstitucion(int Id);
         Taller.Taller BuscarTaller(int Id);
         void RegistrarDestruccion(Producto p);

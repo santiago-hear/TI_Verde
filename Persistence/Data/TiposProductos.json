@@ -1,7 +1,12 @@
 [
   {
-    "Id" : 1,
-    "Nombre" : "Celulares",
+    "Id": 1,
+    "Nombre": "Celulares",
     "Descripcion": "Todo tipo de celulares y dispositivos moviles"
+  },
+  {
+    "Id": 2,
+    "Nombre": "Televisores",
+    "Descripcion": "Televisores y Smart TV"
   }
 ]

@@ -16,7 +16,7 @@ namespace Presentation.Controllers
         //readonly ControlObtenerInformeMensual controlInforme;
         //readonly ControlPonerProductoEnVenta ControlVenta;
         //readonly ControlRegistrarUsuario ControlUsuarios;
-        //readonly ControlAsignarProducto controlAsignar;
+        readonly ControlAsignarProducto controlAsignar;
 
         public TiendaController()
         {
@@ -24,7 +24,7 @@ namespace Presentation.Controllers
             //controlInforme = new ControlObtenerInformeMensual();
             //ControlVenta = new ControlPonerProductoEnVenta();
             //ControlUsuarios = new ControlRegistrarUsuario();
-            //controlAsignar = new ControlAsignarProducto();
+            controlAsignar = new ControlAsignarProducto();
         }
         public IActionResult Index()
         {
@@ -39,12 +39,35 @@ namespace Presentation.Controllers
 
         public IActionResult AsignarProducto()
         {
-            //ViewBag.instituciones = controlAsignar.GetInstituciones();
-            //ViewBag.talleres = controlAsignar.GetTalleres();
+            ViewBag.productosTaller = controlAsignar.DisponiblesParaTaller();
+            ViewBag.productosInstitucion = controlAsignar.DisponiblesParaInstitucion();
+            ViewBag.instituciones = controlAsignar.GetInstituciones();
+            ViewBag.talleres = controlAsignar.GetTalleres();
             ViewBag.productos = controlGestionProducto.GetAllProductos();
             return View();
         }
-
+        [HttpPost]
+        public IActionResult AsignarATaller(int idtaller, int idProducto)
+        {
+            ViewBag.productosTaller = controlAsignar.DisponiblesParaTaller();
+            ViewBag.productosInstitucion = controlAsignar.DisponiblesParaInstitucion();
+            ViewBag.instituciones = controlAsignar.GetInstituciones();
+            ViewBag.talleres = controlAsignar.GetTalleres();
+            ViewBag.productos = controlGestionProducto.GetAllProductos();
+            controlAsignar.AsignarProductoTaller(idtaller, idProducto);
+            return View("AsignarProducto");
+        }
+        [HttpPost]
+        public IActionResult AsignarAInstitucion(int idInstitucion, int idProducto)
+        {
+            ViewBag.productosTaller = controlAsignar.DisponiblesParaTaller();
+            ViewBag.productosInstitucion = controlAsignar.DisponiblesParaInstitucion();
+            ViewBag.instituciones = controlAsignar.GetInstituciones();
+            ViewBag.talleres = controlAsignar.GetTalleres();
+            ViewBag.productos = controlGestionProducto.GetAllProductos();
+            controlAsignar.AsignarProductoInstitucion(idInstitucion, idProducto);
+            return View("AsignarProducto");
+        }
         public IActionResult ConfigurarTipo()
         {
             return View();

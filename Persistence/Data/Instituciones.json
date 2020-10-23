@@ -1,33 +1,48 @@
-[
+[ 
   {
-    "Id": 1,
     "Nombre": "ONU",
-    "Direccion": "direccion",
-    "Asignaciones": [
+    "Nit": "1054728192-2",
+    "Recibidos": [
       {
         "Id": 1,
-        "Descripcion": "compu",
-        "FechaIngreso": "0001-01-01T00:00:00",
-        "Marca": "HP",
-        "TiempoDeUso": 0,
-        "Categoria": "Computadores",
-        "Referencia": "EliteBook",
-        "Precio": 1000,
-        "Nombre": "HP EliteBook"
+        "Descripcion": "xx",
+        "ProductoDonado": {
+          "Id": 1,
+          "Descripcion": "Celular con rayadura en la pantallla",
+          "FechaIngreso": "2020-09-10T23:34:26.5181663-05:00",
+          "Marca": "Huawei",
+          "TiempoDeUso": 12,
+          "TipoProducto": {
+            "Id": 1,
+            "Nombre": "Celulares",
+            "Descripcion": "Todo tipo de celulares y dispositivos moviles"
+          },
+          "Referencia": "P 20",
+          "PrecioCompra": 0,
+          "PrecioVenta": 0,
+          "Estado": "reparado",
+          "Nombre": "Huawei P 20"
+        },
+        "InstitucionBeneficiada": {
+          "Nombre": "ONU",
+          "Nit": "1054728192-2",
+          "Recibidos": [],
+          "Solicitudes": [],
+          "Id": 1,
+          "Telefono": "8827382",
+          "Correo": "onu@mail.org",
+          "Celular": null,
+          "Direccion": "calle gualavi",
+          "Contrasena": "1234"
+        }
       }
     ],
-    "Solicitudes": [
-      {
-        "Id": 1,
-        "Descripcion": "compu",
-        "FechaIngreso": "0001-01-01T00:00:00",
-        "Marca": "HP",
-        "TiempoDeUso": 0,
-        "Categoria": "Computadores",
-        "Referencia": "EliteBook",
-        "Precio": 1000,
-        "Nombre": "HP EliteBook"
-      }
-    ]
+    "Solicitudes": [],
+    "Id": 1,
+    "Telefono": "8827382",
+    "Correo": "onu@mail.org",
+    "Celular": null,
+    "Direccion": "calle gualavi",
+    "Contrasena": "1234"
   }
 ]

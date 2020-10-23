@@ -35,9 +35,9 @@
                     <div class="form-group">
                         <label for="producto">Producto:</label>
                         <select class="form-control" id="producto" name="idProducto">
-                            @foreach (Domain.Producto.Producto p in ViewBag.productos)
+                            @foreach (Domain.Producto.Producto p in ViewBag.productosInstitucion)
                             {
-                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Marca </option>
+                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.TipoProducto.Nombre </option>
                             }
                         </select>
                     </div>
@@ -74,9 +74,9 @@
                     <div class="form-group">
                         <label for="producto">Producto:</label>
                         <select class="form-control" id="producto" name="idProducto">
-                            @foreach (Domain.Producto.Producto p in ViewBag.productos)
+                            @foreach (Domain.Producto.Producto p in ViewBag.productosTaller)
                             {
-                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Marca </option>
+                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.TipoProducto.Nombre </option>
                             }
                         </select>
                     </div>
@@ -85,7 +85,7 @@
                         <select class="form-control" id="taller" name="idtaller">
                             @foreach (Domain.Taller.Taller t in ViewBag.talleres)
                             {
-                                <option value="@t.Id">@t.Id @t.Nombre, direccion: @t.Direccion </option>
+                                <option value="@t.Id">@t.Id @t.Nombre, direccion: @t.Direccion, @t.Ciudad </option>
                             }
                         </select>
                     </div>

@@ -9,19 +9,21 @@ namespace Domain.Taller
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public string Ciudad { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public List<Producto.Producto> Asignaciones { get; set; }
-        public List<Producto.Producto> Arreglos { get; set; }
+        public List<Reparacion.Reparacion> Reparaciones { get; set; }
         public Taller() { }
-        public Taller(int id, string nombre, string direccion, string telefono)
+        public Taller(int id, string nombre, string ciudad, string direccion, string telefono)
         {
             this.Id = id;
             this.Nombre = nombre;
+            this.Ciudad = ciudad;
             this.Direccion = direccion;
             this.Telefono = telefono;
             this.Asignaciones = new List<Producto.Producto>();
-            this.Arreglos = new List<Producto.Producto>();
+            this.Reparaciones = new List<Reparacion.Reparacion>();
         }
     }
 }

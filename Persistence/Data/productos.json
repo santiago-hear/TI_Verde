@@ -1,6 +1,6 @@
 [
   {
-    "Id": 3,
+    "Id": 1,
     "Descripcion": "Celular con rayadura en la pantallla",
     "FechaIngreso": "2020-09-10T23:34:26.5181663-05:00",
     "Marca": "Huawei",
@@ -13,6 +13,38 @@
     "Referencia": "P 20",
     "PrecioCompra": 0,
     "PrecioVenta": 0,
-    "Estado": "Inscrito"
+    "Estado": "reparado"
+  },
+  {
+    "Id": 2,
+    "Descripcion": "Celular sin bateria",
+    "FechaIngreso": "2020-10-10T23:34:26.5181663-05:00",
+    "Marca": "Samsung",
+    "TiempoDeUso": 18,
+    "TipoProducto": {
+      "Id": 1,
+      "Nombre": "Celulares",
+      "Descripcion": "Todo tipo de celulares y dispositivos moviles"
+    },
+    "Referencia": "Galaxy A2",
+    "PrecioCompra": 0,
+    "PrecioVenta": 0,
+    "Estado": "aceptado"
+  },
+  {
+    "Id": 3,
+    "Descripcion": "Televisor pantalla verde",
+    "FechaIngreso": "2020-08-10T23:34:26.5181663-05:00",
+    "Marca": "Kalley",
+    "TiempoDeUso": 8,
+    "TipoProducto": {
+      "Id": 2,
+      "Nombre": "Televisores",
+      "Descripcion": "Televisores y Smart TV"
+    },
+    "Referencia": "LAMP 100",
+    "PrecioCompra": 84000,
+    "PrecioVenta": 0,
+    "Estado": "comprado"
   }
 ]

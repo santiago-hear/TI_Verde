@@ -6,53 +6,68 @@ using Domain.Producto;
 using Domain.Usuario;
 using Domain.Taller;
 using System.Linq;
+using Domain.Donacion;
 
 namespace Persistence.Repositories
 {
     public class RepositorioAsignarProducto : IRepositorioAsignarProducto
     {
-        readonly string pathProductosEnVenta = @"..\Persistence\Data\ProductosEnVenta.json";
+        //readonly string pathProductosEnVenta = @"..\Persistence\Data\ProductosEnVenta.json";
         readonly string pathInstituciones = @"..\Persistence\Data\Instituciones.json";
         readonly string pathTalleres = @"..\Persistence\Data\Talleres.json";
-        readonly string pathDestrucciones = @"..\Persistence\Data\Destrucciones.json";
+        //readonly string pathDestrucciones = @"..\Persistence\Data\Destrucciones.json";
 
         private List<Producto> productos;
         private List<Taller> talleres;
         private List<Institucion> instituciones;
 
+        public void AsignarATaller(Producto p, Taller t)
+        {
+            string talleresString = File.ReadAllText(pathTalleres);
+            talleres = System.Text.Json.JsonSerializer.Deserialize<List<Taller>>(talleresString);
+            foreach (Taller taller in talleres)
+            {
+                if (taller.Id == t.Id)
+                {
+                    taller.Asignaciones.Add(p);
+                }
+            }
+            talleresString = System.Text.Json.JsonSerializer.Serialize(talleres);
+            File.WriteAllText(pathTalleres, talleresString);
+        }
+
         public bool GetProductoEnVenta(int id)
         {
-            List<Producto> productos;
-            string productosString = File.ReadAllText(pathProductosEnVenta);
-            productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
-            Producto producto = productos.FirstOrDefault(p => p.Id == id);
+            //List<Producto> productos;
+            //string productosString = File.ReadAllText(pathProductosEnVenta);
+            //productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
+            //Producto producto = productos.FirstOrDefault(p => p.Id == id);
 
-            if (producto != null) {
-                throw new ProductoEnVentaException("El producto con id: " + id + " ya está en venta");
-            }
+            //if (producto != null) {
+            //    throw new ProductoEnVentaException("El producto con id: " + id + " ya está en venta");
+            //}
             return false;
         }
 
         public void PonerEnVenta(Producto producto)
         {
-            List<Producto> productos;
-            string productosString = File.ReadAllText(pathProductosEnVenta);
-            productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
-            productos.Add(producto);
-            string jsonString = System.Text.Json.JsonSerializer.Serialize(productos);
-            File.WriteAllText(pathProductosEnVenta, jsonString);
+            //List<Producto> productos;
+            //string productosString = File.ReadAllText(pathProductosEnVenta);
+            //productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
+            //productos.Add(producto);
+            //string jsonString = System.Text.Json.JsonSerializer.Serialize(productos);
+            //File.WriteAllText(pathProductosEnVenta, jsonString);
         }
-
         public List<Producto> GetProductosEnVenta()
         {
-            List<Producto> productos;
-            string productosString = File.ReadAllText(pathProductosEnVenta);
-            productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
+            //List<Producto> productos;
+            //string productosString = File.ReadAllText(pathProductosEnVenta);
+            //productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
 
             return productos;
         }
 
-        public void AsignarAInstitucion(Producto p, Institucion i)
+        public void AsignarAInstitucion(Donacion d, Institucion i)
         {
             List<Institucion> instituciones;
             string institucionesString = File.ReadAllText(pathInstituciones);
@@ -62,7 +77,7 @@ namespace Persistence.Repositories
             {
                 if (inst.Id == i.Id)
                 {
-                    inst.Asignaciones.Add(p);
+                    inst.Recibidos.Add(d);
                 }
             }
 
@@ -102,23 +117,6 @@ namespace Persistence.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public void AsignarATaller(Producto p, Taller t)
-        {
-            List<Taller> talleres;
-            string talleresString = File.ReadAllText(pathTalleres);
-            talleres = System.Text.Json.JsonSerializer.Deserialize<List<Taller>>(talleresString);
-            foreach(Taller tall in talleres)
-            {
-                if(tall.Id == t.Id)
-                {
-                    tall.Asignaciones.Add(p);
-                }
-            }
-            talleresString = System.Text.Json.JsonSerializer.Serialize(talleres);
-            File.WriteAllText(pathTalleres, talleresString);
-        }
-
         public List<Taller> getTalleres()
         {
             List<Taller> talleres;

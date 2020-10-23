@@ -37,7 +37,5 @@ namespace ApplicationCore
                 throw ex;
             }
         }
-
-        
     }
 }
