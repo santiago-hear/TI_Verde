@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 1,
+    "Descripcion": "xx",
+    "ProductoDonado": {
+      "Id": 1,
+      "Descripcion": "Celular con rayadura en la pantallla",
+      "FechaIngreso": "2020-09-10T23:34:26.5181663-05:00",
+      "Marca": "Huawei",
+      "TiempoDeUso": 12,
+      "TipoProducto": {
+        "Id": 1,
+        "Nombre": "Celulares",
+        "Descripcion": "Todo tipo de celulares y dispositivos moviles"
+      },
+      "Referencia": "P 20",
+      "PrecioCompra": 0,
+      "PrecioVenta": 0,
+      "Estado": "donado",
+      "Nombre": "Huawei P 20"
+    }
+  }
+]

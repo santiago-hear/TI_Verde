@@ -20,20 +20,8 @@
           "Referencia": "P 20",
           "PrecioCompra": 0,
           "PrecioVenta": 0,
-          "Estado": "reparado",
+          "Estado": "donado",
           "Nombre": "Huawei P 20"
-        },
-        "InstitucionBeneficiada": {
-          "Nombre": "ONU",
-          "Nit": "1054728192-2",
-          "Recibidos": [],
-          "Solicitudes": [],
-          "Id": 1,
-          "Telefono": "8827382",
-          "Correo": "onu@mail.org",
-          "Celular": null,
-          "Direccion": "calle gualavi",
-          "Contrasena": "1234"
         }
       }
     ],
@@ -41,7 +29,7 @@
     "Id": 1,
     "Telefono": "8827382",
     "Correo": "onu@mail.org",
-    "Celular": null,
+    "Celular": "300444444",
     "Direccion": "calle gualavi",
     "Contrasena": "1234"
   }

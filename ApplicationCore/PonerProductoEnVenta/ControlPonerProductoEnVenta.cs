@@ -8,20 +8,20 @@ namespace ApplicationCore.PonerProductoEnVenta
 {
     public class ControlPonerProductoEnVenta
     {
-        readonly IRepositorioAsignarProducto repoProdV = new RepositorioAsignarProducto();
-        readonly IRepositorioGestionarProducto repoProd = new RepositorioGestionarProducto();
+        readonly IRepositorioInstituciones repoProdV = new RepositorioInstituciones();
+        readonly IRepositorioProductos repoProd = new RepositorioProductos();
         public void PonerProuctoEnVenta(int id, float precio) {
             
             try
             {
-                bool esta = repoProdV.GetProductoEnVenta(id);
+                //bool esta = repoProdV.GetProductoEnVenta(id);
 
-                if (!esta)
-                {
-                    Producto producto = repoProd.GetProducto(id);
-                    producto.PrecioVenta = precio;
-                    repoProdV.PonerEnVenta(producto);
-                }
+                //if (!esta)
+                //{
+                //    Producto producto = repoProd.GetProducto(id);
+                //    producto.PrecioVenta = precio;
+                //    repoProdV.PonerEnVenta(producto);
+                //}
             }
             catch(ProductoEnVentaException ex)
             {
@@ -29,9 +29,9 @@ namespace ApplicationCore.PonerProductoEnVenta
             }
         }
 
-        public List<Producto> getProductosEnVenta()
-        {
-            return repoProdV.GetProductosEnVenta();
-        }
+        //public List<Producto> getProductosEnVenta()
+        //{
+        //    return repoProdV.GetProductosEnVenta();
+        //}
     }
 }

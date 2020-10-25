@@ -9,38 +9,38 @@ namespace Persistence.Repositories
 {
     public class RepositorioRegistrarUsuario : IRepositorioRegistrarUsuario
     {
-        readonly string pathUsuarios = @"..\Persistence\Data\Usuarios.json";
-        public void registrarUsusario(Usuario usuario)
-        {
-            List<Usuario> usuarios;
-            string usuariosString = File.ReadAllText(pathUsuarios);
-            usuarios = System.Text.Json.JsonSerializer.Deserialize<List<Usuario>>(usuariosString);
-            Usuario us = usuarios.FirstOrDefault(u => u.Id == usuario.Id);
-            if (us == null)
-            {
-                throw new UsuarioYaExisteException("El usuario con cedula" + usuario.Id + " ya se encuentra Registrado");
-            }
-            usuarios.Add(usuario);
-            string jsonString = System.Text.Json.JsonSerializer.Serialize(usuarios);
-            File.WriteAllText(pathUsuarios, jsonString);
-        }
+        //readonly string pathUsuarios = @"..\Persistence\Data\Usuarios.json";
 
-        public int GetMaxId()
-        {
-            int maxid = 0;
-            List<Usuario> usuarios;
-            string usuariosString = File.ReadAllText(pathUsuarios);
-            usuarios = System.Text.Json.JsonSerializer.Deserialize<List<Usuario>>(usuariosString);
-            foreach (Usuario p in usuarios)
-            {
-                if (p.Id > maxid)
-                {
-                    maxid = p.Id;
-                }
-            }
-            return maxid;
-        }
+        //public void registrarUsusario(Usuario usuario)
+        //{
+        //    List<Usuario> usuarios;
+        //    string usuariosString = File.ReadAllText(pathUsuarios);
+        //    usuarios = System.Text.Json.JsonSerializer.Deserialize<List<Usuario>>(usuariosString);
+        //    Usuario us = usuarios.FirstOrDefault(u => u.Id == usuario.Id);
+        //    if (us == null)
+        //    {
+        //        throw new UsuarioYaExisteException("El usuario con cedula" + usuario.Id + " ya se encuentra Registrado");
+        //    }
+        //    usuarios.Add(usuario);
+        //    string jsonString = System.Text.Json.JsonSerializer.Serialize(usuarios);
+        //    File.WriteAllText(pathUsuarios, jsonString);
+        //}
 
+        //public int GetMaxId()
+        //{
+        //    int maxid = 0;
+        //    List<Usuario> usuarios;
+        //    string usuariosString = File.ReadAllText(pathUsuarios);
+        //    usuarios = System.Text.Json.JsonSerializer.Deserialize<List<Usuario>>(usuariosString);
+        //    foreach (Usuario p in usuarios)
+        //    {
+        //        if (p.Id > maxid)
+        //        {
+        //            maxid = p.Id;
+        //        }
+        //    }
+        //    return maxid;
+        //}
     }
 }
 

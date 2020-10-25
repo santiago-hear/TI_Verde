@@ -52,7 +52,7 @@ namespace Presentation.Controllers
         [HttpPost]
         public IActionResult RegistrarProducto(string descripcion, string marca, int tiempoDeUso, TipoProducto categoria, string referencia)
         {
-            controlGestionProducto.RegistrarProducto(descripcion, marca, tiempoDeUso, categoria,referencia);
+            //controlGestionProducto.RegistrarProducto(descripcion, marca, tiempoDeUso, categoria,referencia);
             return View();
         }
 
@@ -69,7 +69,7 @@ namespace Presentation.Controllers
                 try
                 {
                     ViewBag.ventana = "uno";
-                    ViewBag.Producto = controlGestionProducto.GetProducto(id);
+                    //ViewBag.Producto = controlGestionProducto.GetProducto(id);
                 }
                 catch(ProductoNoExisteException ex){
                     ViewBag.ventana = "Error: " + ex.Message;
@@ -85,7 +85,7 @@ namespace Presentation.Controllers
             {
                 try
                 {
-                    ViewBag.productos = controlInforme.ObtenerInformeProductosMensual(mes);
+                    //ViewBag.productos = controlInforme.ObtenerInformeProductosMensual(mes);
                 }
                 catch (NoHayProductosMesException ex)
                 {
@@ -103,7 +103,7 @@ namespace Presentation.Controllers
         public IActionResult ProductosEnVenta()
         {
             ViewBag.productos = controlGestionProducto.GetAllProductos();
-            ViewBag.productosEnVenta = ControlVenta.getProductosEnVenta();
+            //ViewBag.productosEnVenta = ControlVenta.getProductosEnVenta();
             return View();
         }
 
@@ -119,7 +119,7 @@ namespace Presentation.Controllers
             {
                 ViewBag.message = "Error: " + ex.Message;
             }
-            ViewBag.productosEnVenta = ControlVenta.getProductosEnVenta();
+            //ViewBag.productosEnVenta = ControlVenta.getProductosEnVenta();
             return View();
         }
         
@@ -133,7 +133,7 @@ namespace Presentation.Controllers
         {
             try
             {
-                ControlUsuarios.RegistrarUsuario(cedula, nombre, apellido, celular, correo, contraseña);
+                //ControlUsuarios.RegistrarUsuario(cedula, nombre, apellido, celular, correo, contraseña);
             }
             catch (UsuarioYaExisteException ex)
             {
