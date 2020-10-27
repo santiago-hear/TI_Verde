@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ApplicationCore;
+using ApplicationCore.ConfigurarTipoProducto;
 using ApplicationCore.PonerProductoEnVenta;
 using Domain.Producto;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ namespace Presentation.Controllers
         readonly ControlGestionarProducto controlGestionProducto;
         readonly ControlAsignarProducto controlAsignarProducto;
         readonly ControlPonerProductoEnVenta ControlProductoVenta;
+        readonly ControlConfigurarTipoProducto controlTiposProductos;
 
 
         public TiendaController()
@@ -19,6 +21,7 @@ namespace Presentation.Controllers
             controlGestionProducto = new ControlGestionarProducto();
             controlAsignarProducto = new ControlAsignarProducto();
             ControlProductoVenta = new ControlPonerProductoEnVenta();
+            controlTiposProductos = new ControlConfigurarTipoProducto();
         }
         public IActionResult Index()
         {
@@ -112,6 +115,34 @@ namespace Presentation.Controllers
         }
         public IActionResult ConfigurarTipo()
         {
+            try
+            {
+                ViewBag.inventario = controlTiposProductos.GetTiposProductos();
+                ViewBag.configurados = controlTiposProductos.GetTiposProductosConfigurados();
+            }
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ConfigurarTipo(string Tipos)
+        {
+            ViewBag.inventario = controlTiposProductos.GetTiposProductos();
+            ViewBag.configurados = controlTiposProductos.GetTiposProductosConfigurados();
+            ViewBag.info = Tipos;
+            //try
+            //{
+            //    controlTiposProductos.ConfigurarTiposProductos(Tipos);
+            //    ViewBag.inventario = controlTiposProductos.GetTiposProductos();
+            //    ViewBag.configurados = controlTiposProductos.GetTiposProductosConfigurados();
+            //}
+            //catch (Exception ex)
+            //{
+            //    ViewBag.ErrorMessage = ex.Message;
+            //}
             return View();
         }
 

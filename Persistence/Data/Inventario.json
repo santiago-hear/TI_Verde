@@ -1,0 +1,42 @@
+[
+  {
+    "Nombre": "Celulares",
+    "Descripcion": "Telefonos comunes o Smartphones"
+  },
+  {
+    "Nombre": "Televisores",
+    "Descripcion": "Televisores convencionales, LCD, LED o SmartTVs"
+  },
+  {
+    "Nombre": "Tablets",
+    "Descripcion": "Dispositivos de pantalla grande, Tabletas, iPad o Note"
+  },
+  {
+    "Nombre": "Dispositivos de Sonido",
+    "Descripcion": "Equipos de sonido, bafles portatiles o speakers"
+  },
+  {
+    "Nombre": "Relojes",
+    "Descripcion": "Smartband, SmartWatch o relojes Bluetooth"
+  },
+  {
+    "Nombre": "Cargadores",
+    "Descripcion": "Cargadores de todo tipo de dispositivos, conversores AC DC o Cables USB"
+  },
+  {
+    "Nombre": "Computadores Portatiles",
+    "Descripcion": "Laptops, computadores portatiles y Books"
+  },
+  {
+    "Nombre": "Monitores",
+    "Descripcion": "Pantallas de computador o monitores"
+  },
+  {
+    "Nombre": "Camaras",
+    "Descripcion": "Camaras de PC, camaras digitales comunes y profesionales"
+  },
+  {
+    "Nombre": "Dispositivos E/S",
+    "Descripcion": "Mouses, huella dactilar, teclado o tableros"
+  }
+]

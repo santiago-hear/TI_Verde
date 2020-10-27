@@ -16,7 +16,7 @@ namespace Tests.UnitTests
                 //List<Producto> p = ControlInforme.ObtenerInformeProductosMensual(DateTime.Now);
                 //Assert.That(p, Is.Not.Null);
             }
-            catch (NoHayProductosMesException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }

@@ -10,8 +10,12 @@ namespace Persistence.Repositories
     public class RepositorioTiposProductos : IRepositorioTiposProductos
     {
         readonly string pathTiposProductos = @"..\Persistence\Data\TiposProductos.json";
+        readonly string pathInventario = @"..\Persistence\Data\Inventario.json";
+
         string tiposProductosString;
+        string inventarioString;
         private List<TipoProducto> tiposProductos;
+        private List<dynamic> inventario;
 
         public RepositorioTiposProductos()
         {
@@ -26,7 +30,7 @@ namespace Persistence.Repositories
             }
         }
 
-        public List<TipoProducto> GetTiposProductos()
+        public List<TipoProducto> GetTiposProductosConfigurados()
         {
             return tiposProductos;
         }
@@ -70,6 +74,20 @@ namespace Persistence.Repositories
                 }
             }
             return maxid;
+        }
+
+        public List<dynamic> GetTiposProductosInventario()
+        {
+            try
+            {
+                inventarioString = File.ReadAllText(pathInventario);
+                inventario = System.Text.Json.JsonSerializer.Deserialize<List<dynamic>>(inventarioString);
+                return inventario;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

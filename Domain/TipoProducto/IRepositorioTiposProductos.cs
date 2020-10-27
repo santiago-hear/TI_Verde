@@ -6,7 +6,8 @@ namespace Domain.TipoProducto
 {
     public interface IRepositorioTiposProductos
     {
-        List<TipoProducto> GetTiposProductos();
+        List<TipoProducto> GetTiposProductosConfigurados();
+        List<dynamic> GetTiposProductosInventario();
         void RegistrarTipoProducto(TipoProducto tipoProducto);
         TipoProducto BuscarTipoProducto(int Id);
         void EliminarTipoProducto(int Id);
