@@ -10,5 +10,6 @@ namespace Domain.Destruccion
         void RegistrarDestruccion(Destruccion destruccion);
         Destruccion BuscarDestruccion(int Id);
         void EliminarDestruccion(int Id);
+        int GetMaxIdDestrucciones();
     }
 }

@@ -8,30 +8,40 @@ namespace ApplicationCore.PonerProductoEnVenta
 {
     public class ControlPonerProductoEnVenta
     {
-        readonly IRepositorioInstituciones repoProdV = new RepositorioInstituciones();
-        readonly IRepositorioProductos repoProd = new RepositorioProductos();
-        public void PonerProuctoEnVenta(int id, float precio) {
-            
+        readonly IRepositorioProductos repositorioProductos;
+
+        public ControlPonerProductoEnVenta()
+        {
+            repositorioProductos = new RepositorioProductos();
+        }
+
+        public List<Producto> DisponoblesParaVenta()
+        {
+            List<Producto> productos = repositorioProductos.GetProductos();
+            return productos.FindAll(p => p.Estado.Equals("Reparado"));
+        }
+
+        public void PonerProductoEnVenta(int id, float precio) 
+        {    
             try
             {
-                //bool esta = repoProdV.GetProductoEnVenta(id);
-
-                //if (!esta)
-                //{
-                //    Producto producto = repoProd.GetProducto(id);
-                //    producto.PrecioVenta = precio;
-                //    repoProdV.PonerEnVenta(producto);
-                //}
+                string estado = "En Venta";
+                Producto producto = repositorioProductos.BuscarProducto(id);
+                Producto productoActualizado = producto;
+                productoActualizado.PrecioVenta = precio;
+                productoActualizado.Estado = estado;
+                repositorioProductos.ActualizarProducto(producto, productoActualizado);
             }
-            catch(ProductoEnVentaException ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
         }
 
-        //public List<Producto> getProductosEnVenta()
-        //{
-        //    return repoProdV.GetProductosEnVenta();
-        //}
+        public List<Producto> GetProductosEnVenta()
+        {
+            List<Producto> productos = repositorioProductos.GetProductos();
+            return productos.FindAll(p => p.Estado.Equals("En Venta"));
+        }
     }
 }

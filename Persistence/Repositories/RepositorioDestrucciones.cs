@@ -48,14 +48,41 @@ namespace Persistence.Repositories
             Destruccion destruccion = destrucciones.FirstOrDefault(p => p.Id == id);
             if (destruccion == null)
             {
-                //throw new DestruccionNoExisteException("La destruccion con id: " + id + " no existe");
+                throw new DestruccionNoExisteException("La destruccion con id: " + id + " no existe");
             }
             return destruccion;
         }
 
-        public void EliminarDestruccion(int id)
+        public void EliminarDestruccion(int IdDestruccion)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Destruccion institucion = destrucciones.Find(p => p.Id == IdDestruccion);
+                if (institucion == null)
+                {
+                    throw new DestruccionNoExisteException("La Destruccion con id: " + IdDestruccion + "no se puede eliminar porque no existe");
+                }
+                destrucciones.Remove(institucion);
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(destrucciones);
+                File.WriteAllText(pathDestrucciones, jsonString);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int GetMaxIdDestrucciones()
+        {
+            int maxid = 0;
+            foreach (Destruccion destruccion in destrucciones)
+            {
+                if (destruccion.Id > maxid)
+                {
+                    maxid = destruccion.Id;
+                }
+            }
+            return maxid;
         }
     }
 }

@@ -30,8 +30,7 @@ namespace Domain.Producto
             this.Referencia = referencia;
             this.PrecioCompra = 0;
             this.PrecioVenta = 0;
-            this.Estado = "Inscrito";
+            this.Estado = "Registrado";
         }
-        
     }
 }

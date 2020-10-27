@@ -3,3 +3,43 @@
 *@
 @{
 }
+
+@Html.Partial("_Menu")
+
+<h1>Poner Producto En Venta</h1>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger m-3" role="alert">
+        @ViewBag.ErrorMessage
+    </div>}
+else
+{
+    <form action="PonerEnVenta" method="post">
+        <div class="form-group">
+            <label for="producto">Producto</label>
+            <select class="form-control" id="producto" name="IdProducto" required>
+                <option disabled selected value="">Seleccione el producto</option>
+                @foreach (Domain.Producto.Producto p in ViewBag.productosParaVender)
+                {
+                    <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.Marca </option>
+                }
+            </select>
+            @if (ViewBag.productosParaVender.Count == 0)
+            {
+                <div class="alert alert-warning mt-2" role="alert">
+                    No hay productos dispoibles para poner en venta
+                </div>}
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio de Venta: </label>
+            <input type="number" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio del producto" required>
+        </div>
+        <button type="submit" class="btn btn-dark">Poner En Venta</button>
+    </form>
+    <hr />
+    @if (ViewBag.message != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.message
+        </div>}
+}

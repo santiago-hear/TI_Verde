@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Domain.Producto;
 using Domain.TipoProducto;
+using Domain.Usuario;
 using Persistence.Repositories;
 
 namespace ApplicationCore
@@ -10,32 +10,50 @@ namespace ApplicationCore
     public class ControlGestionarProducto
     {
         readonly IRepositorioProductos repositorioProductos;
-        public List<Producto> productos;
+        readonly IRepositorioTiposProductos repositorioTiposProductos;
         public ControlGestionarProducto()
         {
             repositorioProductos = new RepositorioProductos();
-            productos = repositorioProductos.GetProductos();
+            repositorioTiposProductos = new RepositorioTiposProductos();
         }
-        public List<Producto> GetAllProductos()
+        public List<Producto> GetProductos()
         {
-            return this.productos;
+            try
+            {
+                return repositorioProductos.GetProductos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
-        //public void RegistrarProducto(string descripcion, string marca, int tiempoDeUso, TipoProducto categoria, string referencia)
-        //{
-        //    int id = repositorioProductos.GetMaxId()+1;
-        //    Producto p = new Producto(id, descripcion, DateTime.Now, marca, tiempoDeUso, categoria, referencia);
-        //    repositorioProductos.RegistrarProducto(p);
-        //}
-        //public Producto GetProducto(int id)
-        //{
-        //    try
-        //    {
-        //        return repositorioProductos.GetProducto(id);
-        //    }
-        //    catch(ProductoNoExisteException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+
+        public void RegistrarProducto(string descripcion, string marca, int tiempoDeUso, int Idcategoria, string referencia)
+        {
+            try
+            {
+                int newId = repositorioProductos.GetMaxIdProductos() + 1;
+                TipoProducto categoria = repositorioTiposProductos.BuscarTipoProducto(Idcategoria);
+                Producto p = new Producto(newId, descripcion, DateTime.Now, marca, tiempoDeUso, categoria, referencia);
+                repositorioProductos.RegistrarProducto(p);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Producto BuscarProducto(int IdProducto)
+        {
+            try
+            {
+                return repositorioProductos.BuscarProducto(IdProducto);
+            }
+            catch (InstitucionNoExisteException ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

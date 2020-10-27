@@ -62,7 +62,7 @@ namespace Presentation.Controllers
             if (id == 0)
             {
                 ViewBag.ventana = "todos";
-                ViewBag.Productos = controlGestionProducto.GetAllProductos();
+                ViewBag.Productos = controlGestionProducto.GetProductos();
             }
             else if (id > 0)
             {
@@ -71,7 +71,7 @@ namespace Presentation.Controllers
                     ViewBag.ventana = "uno";
                     //ViewBag.Producto = controlGestionProducto.GetProducto(id);
                 }
-                catch(ProductoNoExisteException ex){
+                catch(InstitucionNoExisteException ex){
                     ViewBag.ventana = "Error: " + ex.Message;
                 }
             }
@@ -87,7 +87,7 @@ namespace Presentation.Controllers
                 {
                     //ViewBag.productos = controlInforme.ObtenerInformeProductosMensual(mes);
                 }
-                catch (NoHayProductosMesException ex)
+                catch (Exception ex)
                 {
                     ViewBag.message = "Error: " + ex.Message;
                 }
@@ -102,7 +102,7 @@ namespace Presentation.Controllers
 
         public IActionResult ProductosEnVenta()
         {
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
+            ViewBag.productos = controlGestionProducto.GetProductos();
             //ViewBag.productosEnVenta = ControlVenta.getProductosEnVenta();
             return View();
         }
@@ -110,12 +110,12 @@ namespace Presentation.Controllers
         [HttpPost]
         public IActionResult ProductosEnVenta(int id, float precio)
         {
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
+            ViewBag.productos = controlGestionProducto.GetProductos();
             try
             {
-                ControlVenta.PonerProuctoEnVenta(id, precio);
+                ControlVenta.PonerProductoEnVenta(id, precio);
             }
-            catch(ProductoEnVentaException ex)
+            catch(Exception ex)
             {
                 ViewBag.message = "Error: " + ex.Message;
             }
@@ -135,7 +135,7 @@ namespace Presentation.Controllers
             {
                 //ControlUsuarios.RegistrarUsuario(cedula, nombre, apellido, celular, correo, contraseña);
             }
-            catch (UsuarioYaExisteException ex)
+            catch (Exception ex)
             {
                 ViewBag.message = "ERROR: " + ex.Message;
             }
@@ -146,26 +146,8 @@ namespace Presentation.Controllers
         {
             ViewBag.instituciones = controlAsignar.GetInstituciones();
             ViewBag.talleres = controlAsignar.GetTalleres();
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
+            ViewBag.productos = controlGestionProducto.GetProductos();
             return View();
-        }
-        [HttpPost]
-        public IActionResult AsignarAInstitucion(int idInstitucion, int idProducto)
-        {
-            ViewBag.instituciones = controlAsignar.GetInstituciones();
-            ViewBag.talleres = controlAsignar.GetTalleres();
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
-            controlAsignar.AsignarProductoInstitucion(idInstitucion, idProducto);
-            return View("AsignarProducto");
-        }
-        [HttpPost]
-        public IActionResult AsignarATaller(int idtaller, int idProducto)
-        {
-            ViewBag.instituciones = controlAsignar.GetInstituciones();
-            ViewBag.talleres = controlAsignar.GetTalleres();
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
-            controlAsignar.AsignarProductoTaller(idtaller, idProducto);
-            return View("AsignarProducto");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

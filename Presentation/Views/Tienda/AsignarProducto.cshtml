@@ -1,9 +1,16 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
+@Html.Partial("_Menu")
 
 <h1>Asignar Producto</h1>
 <hr />
+@if (ViewBag.ErrorMessage != null)
+{
+<div class="alert alert-danger m-3" role="alert">
+    @ViewBag.ErrorMessage
+</div>
+}
+else
+{
 <h3>Asignar para: </h3>
 <br />
 <div class="row">
@@ -11,13 +18,13 @@
         <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalTaller">Taller</button>
     </div>
     <div class="col">
-        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalInstitucion">Insitucion</button>
+        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalInstitucion">Institución</button>
     </div>
     <div class="col">
-        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalDestruccion">Destruccion</button>
+        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#ModalDestruccion">Destrucción</button>
     </div>
     <div class="col">
-        <a href="ProductosEnVenta" class="btn btn-outline-success">Poner en Venta</a>
+        <a href="PonerEnVenta" class="btn btn-outline-success">Poner en Venta</a>
     </div>
 </div>
 <!-- Modal -->
@@ -25,7 +32,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Asignar para Institucion</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Asignar para Institución</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -34,27 +41,69 @@
                 <form action="AsignarAInstitucion" method="post">
                     <div class="form-group">
                         <label for="producto">Producto:</label>
-                        <select class="form-control" id="producto" name="idProducto">
+                        <select class="form-control" id="producto" name="idProducto" required>
+                            <option disabled selected value="">Seleccione el producto</option>
                             @foreach (Domain.Producto.Producto p in ViewBag.productosInstitucion)
                             {
-                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.TipoProducto.Nombre </option>
-                            }
+                        <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.TipoProducto.Nombre </option>
+}
                         </select>
+                        @if (ViewBag.productosInstitucion.Count == 0)
+                        {
+            <div class="alert alert-warning mt-2" role="alert">
+                No hay productos dispoibles para donacion
+            </div>}
                     </div>
                     <div class="form-group">
-                        <label for="institucion">Institucion: </label>
-                        <select class="form-control" id="institucion" name="idInstitucion">
+                        <label for="institucion">Institución: </label>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Seleccionar</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Direccion</th>
+                                    <th scope="col">Solicitudes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Domain.Usuario.Institucion i in ViewBag.instituciones)
+                                {
+                        <tr>
+                            <td><input type="radio" name="idInstitucion" value="@i.Id" required/></td>
+                            <td>@i.Nombre</td>
+                            <td>@i.Direccion</td>
+                            <td>
+                                @if(i.Solicitudes.Count == 0)
+                                {
+                                    <p style="color:orangered">Sin solicitudes</p>
+                                }
+                                else { 
+                                @foreach (Domain.TipoProducto.TipoProducto s in i.Solicitudes)
+                                {
+                        @s.Nombre.Concat(",")}
+                                }
+                            </td>
+                        </tr>}
+                            </tbody>
+                        </table>
+                        @*<select class="form-control" id="institucion" name="idInstitucion" required>
+                            <option disabled selected value="">Seleccione la institucion</option>
                             @foreach (Domain.Usuario.Institucion i in ViewBag.instituciones)
                             {
                                 <option value="@i.Id">@i.Id @i.Nombre, direccion: @i.Direccion </option>
                             }
-                        </select>
+                        </select>*@
+                        @if (ViewBag.instituciones.Count == 0)
+                        {
+            <div class="alert alert-warning mt-2" role="alert">
+                No hay instituciones que necesiten este producto
+            </div>}
                     </div>
-                    <button type="submit" class="btn btn-dark">Asignar a Institucion</button>
+                    <button type="submit" class="btn btn-dark">Asignar a Institución</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
@@ -73,28 +122,82 @@
                 <form action="AsignarATaller" method="post">
                     <div class="form-group">
                         <label for="producto">Producto:</label>
-                        <select class="form-control" id="producto" name="idProducto">
+                        <select class="form-control" id="producto" name="idProducto" required>
+                            <option disabled selected value="">Seleccione el producto</option>
                             @foreach (Domain.Producto.Producto p in ViewBag.productosTaller)
                             {
-                                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.TipoProducto.Nombre </option>
-                            }
+                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.TipoProducto.Nombre </option>}
                         </select>
+                        @if (ViewBag.productosTaller.Count == 0)
+                        {
+            <div class="alert alert-warning mt-2" role="alert">
+                No hay productos disponibles para asignar a taller
+            </div>}
                     </div>
                     <div class="form-group">
                         <label for="taller">Taller: </label>
-                        <select class="form-control" id="taller" name="idtaller">
+                        <select class="form-control" id="taller" name="idtaller" required>
+                            <option disabled selected value="">Seleccione el taller</option>
                             @foreach (Domain.Taller.Taller t in ViewBag.talleres)
                             {
-                                <option value="@t.Id">@t.Id @t.Nombre, direccion: @t.Direccion, @t.Ciudad </option>
-                            }
+                <option value="@t.Id">@t.Id @t.Nombre, direccion: @t.Direccion, @t.Ciudad </option>}
                         </select>
+                        @if (ViewBag.talleres.Count == 0)
+                        {
+            <div class="alert alert-warning mt-2" role="alert">
+                No hay talleres disponibles
+            </div>}
                     </div>
                     <button type="submit" class="btn btn-dark">Asignar a Taller</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="ModalDestruccion" tabindex="-1" role="dialog" aria-labelledby="ModalDestruccionTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Asignar para Destrucción</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="AsignarADestruccion" method="post">
+                    <div class="form-group">
+                        <label for="producto">Producto:</label>
+                        <select class="form-control" id="producto" name="idProducto" required>
+                            <option disabled selected value="">Seleccione el producto</option>
+                            @foreach (Domain.Producto.Producto p in ViewBag.productosDestruccion)
+                            {
+                <option value="@p.Id">@p.Id @p.Nombre, categoria: @p.TipoProducto.Nombre </option>}
+                        </select>
+                        @if (ViewBag.productosDestruccion.Count == 0)
+                        {
+            <div class="alert alert-warning" role="alert">
+                No hay productos disponibles para destruccion.
+            </div>}
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción: </label>
+                        <textarea type="text" id="descripcion" name="descripcionDestruccion" class="form-control" placeholder="Ingrese la justificación de destrucción" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagenD">Imagen de la Destrucción: </label>
+                        <input type="text" id="imagenD" name="imagenPrueba" class="form-control" placeholder="Ingrese imagen de la destrucción" required />
+                    </div>
+                    <button type="submit" class="btn btn-dark">Asignar a Destrucción</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+}

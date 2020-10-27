@@ -10,5 +10,6 @@ namespace Domain.Donacion
         void RegistrarDonacion(Donacion donacion);
         Donacion BuscarDonacion(int Id);
         void EliminarDonacion(int Id);
+        int GetMaxIdDonaciones();
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+@Html.Partial("_Menu")
 
 <h1>Obtener Informe</h1>
 <form action="ObtenerInforme" method="get">
@@ -26,22 +27,19 @@
     <tbody>
         @foreach (Domain.Producto.Producto p in ViewBag.productos)
         {
-            <tr>
-                <th scope="row">@p.Id</th>
-                <td>@p.Descripcion</td>
-                <td>@p.FechaIngreso</td>
-                <td>@p.Marca</td>
-                <td>@p.Referencia</td>
-                <td>@p.Marca</td>
-            </tr>
-        }
+<tr>
+    <th scope="row">@p.Id</th>
+    <td>@p.Descripcion</td>
+    <td>@p.FechaIngreso</td>
+    <td>@p.Marca</td>
+    <td>@p.Referencia</td>
+    <td>@p.Marca</td>
+</tr>}
     </tbody>
-</table>
-}
-<hr/>
+</table>}
+<hr />
 @if (@ViewBag.message != null)
 {
-    <div class="alert alert-dark" role="alert">
-        @ViewBag.message
-    </div>
-}
+<div class="alert alert-dark" role="alert">
+    @ViewBag.message
+</div>}

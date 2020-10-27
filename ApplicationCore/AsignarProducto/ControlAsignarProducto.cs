@@ -4,7 +4,6 @@ using Domain.Taller;
 using Persistence.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Domain.Destruccion;
 using Domain.Donacion;
 
@@ -15,36 +14,55 @@ namespace ApplicationCore
         readonly IRepositorioProductos repositorioProductos;
         readonly IRepositorioTalleres repositorioTalleres;
         readonly IRepositorioInstituciones repositorioInstituciones;
-        readonly IRepositorioDestrucciones repositorioDonaciones;
+        readonly IRepositorioDonaciones repositorioDonaciones;
+        readonly IRepositorioDestrucciones repositorioDestrucciones;
         public ControlAsignarProducto()
         {
             repositorioProductos = new RepositorioProductos();
             repositorioTalleres = new RepositorioTalleres();
             repositorioInstituciones = new RepositorioInstituciones();
             repositorioDonaciones = new RepositorioDonaciones();
+            repositorioDestrucciones = new RepositorioDestrucciones();
         }
 
         ////////////////////////////////////////// ASIGNACION A TALLER //////////////////////////////////////////////////////////
         
         public List<Producto> DisponiblesParaTaller ()
         {
-            List<Producto> productos = repositorioProductos.GetProductos();
-            return productos.FindAll(p => p.Estado.Equals("comprado") || p.Estado.Equals("aceptado"));
+            try
+            {
+                List<Producto> productos = repositorioProductos.GetProductos();
+                return productos.FindAll(p => p.Estado.Equals("Comprado") || p.Estado.Equals("Aceptado"));
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
+
         public List<Taller> GetTalleres()
         {
-            List<Taller> talleres = repositorioTalleres.GetTalleres();
-            return talleres;
+            try
+            {
+                List<Taller> talleres = repositorioTalleres.GetTalleres();
+                return talleres;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+
         public void AsignarProductoTaller(int IdTaller, int IdProducto)
         {
             try
             {
-                string estado = "en Taller";
+                string estado = "En Taller";
                 Producto producto = repositorioProductos.BuscarProducto(IdProducto);
+                Producto productoActualizado = producto;
                 Taller taller = repositorioTalleres.BuscarTaller(IdTaller);
-                repositorioProductos.ActualizarEstado(producto ,estado);
-                producto.Estado = estado;
+                productoActualizado.Estado = estado;
+                repositorioProductos.ActualizarProducto(producto, productoActualizado);
                 repositorioTalleres.AsignarProducto(producto, taller);
             }
             catch (Exception ex)
@@ -57,24 +75,40 @@ namespace ApplicationCore
         
         public List<Producto> DisponiblesParaInstitucion()
         {
-            List<Producto> productos = repositorioProductos.GetProductos();
-            return productos.FindAll(p => p.Estado.Equals("reparado"));
+            try
+            {
+                List<Producto> productos = repositorioProductos.GetProductos();
+                return productos.FindAll(p => p.Estado.Equals("Reparado Con Fallas"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public List<Institucion> GetInstituciones()
         {
-            List<Institucion> instituciones = repositorioInstituciones.GetInstituciones();
-            return instituciones;
+            try
+            {
+                List<Institucion> instituciones = repositorioInstituciones.GetInstituciones();
+                return instituciones;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public void AsignarProductoInstitucion(int IdInstitucion, int IdProducto, string descripcionDonacion)
         {
             try
             {
-                string estado = "donado";
+                int newId = repositorioDonaciones.GetMaxIdDonaciones() + 1;
+                string estado = "Donado";
                 Producto producto = repositorioProductos.BuscarProducto(IdProducto);
-                producto.Estado = estado;
+                Producto productoActualizado = producto;
+                productoActualizado.Estado = estado;
                 Institucion institucion = repositorioInstituciones.BuscarInstitucion(IdInstitucion);
-                Donacion donacion = new Donacion(1, descripcionDonacion, producto);
-                repositorioProductos.ActualizarEstado(producto, estado);
+                Donacion donacion = new Donacion(newId, descripcionDonacion, producto);
+                repositorioProductos.ActualizarProducto(producto, productoActualizado);
                 repositorioInstituciones.DonarProducto(donacion, institucion);
                 repositorioDonaciones.RegistrarDonacion(donacion);
             }
@@ -85,16 +119,31 @@ namespace ApplicationCore
         }
 
         ////////////////////////////////////////// ASIGNACION PARA DESTRUCCION //////////////////////////////////////////////////////////
-        
+
+        public List<Producto> DisponiblesParaDestruccion()
+        {
+            try
+            {
+                List<Producto> productos = repositorioProductos.GetProductos();
+                return productos.FindAll(p => p.Estado.Equals("Sin Arreglo"));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void AsignarProductoDestruccion(string descripcionDestruccion, string imagenPrueba, int IdProducto)
         {
             try
             {
-                string estado = "destruido";
+                int newId = repositorioDestrucciones.GetMaxIdDestrucciones() + 1;
+                string estado = "Destruido";
                 Producto producto = repositorioProductos.BuscarProducto(IdProducto);
-                producto.Estado = estado;
-                Destruccion destruccion = new Destruccion(1, descripcionDestruccion, DateTime.Now, imagenPrueba, producto);
-                repositorioProductos.ActualizarEstado(producto, estado);
+                Producto productoActualizado = producto;
+                productoActualizado.Estado = estado;
+                Destruccion destruccion = new Destruccion(newId, descripcionDestruccion, DateTime.Now, imagenPrueba, producto);
+                repositorioProductos.ActualizarProducto(producto, productoActualizado);
                 repositorioDestrucciones.RegistrarDestruccion(destruccion);
             }
             catch(Exception ex)

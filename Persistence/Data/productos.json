@@ -11,9 +11,10 @@
       "Descripcion": "Todo tipo de celulares y dispositivos moviles"
     },
     "Referencia": "P 20",
-    "PrecioCompra": 0,
-    "PrecioVenta": 0,
-    "Estado": "reparado"
+    "PrecioCompra": 34000,
+    "PrecioVenta": 145000,
+    "Estado": "En Venta",
+    "Nombre": "Huawei P 20"
   },
   {
     "Id": 2,
@@ -29,7 +30,8 @@
     "Referencia": "Galaxy A2",
     "PrecioCompra": 0,
     "PrecioVenta": 0,
-    "Estado": "aceptado"
+    "Estado": "Aceptado",
+    "Nombre": "Samsung Galaxy A2"
   },
   {
     "Id": 3,
@@ -45,6 +47,24 @@
     "Referencia": "LAMP 100",
     "PrecioCompra": 84000,
     "PrecioVenta": 0,
-    "Estado": "comprado"
+    "Estado": "Comprado",
+    "Nombre": "Kalley LAMP 100"
+  },
+  {
+    "Id": 4,
+    "Descripcion": "Televisor pantalla roja",
+    "FechaIngreso": "2020-08-10T23:34:26.5181663-05:00",
+    "Marca": "LG",
+    "TiempoDeUso": 10,
+    "TipoProducto": {
+      "Id": 2,
+      "Nombre": "Televisores",
+      "Descripcion": "Televisores y Smart TV"
+    },
+    "Referencia": "O LED",
+    "PrecioCompra": 184000,
+    "PrecioVenta": 0,
+    "Estado": "Reparado Con Fallas",
+    "Nombre": "LG O LED"
   }
 ]

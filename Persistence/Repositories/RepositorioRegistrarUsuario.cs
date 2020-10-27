@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Persistence.Repositories
 {
-    public class RepositorioRegistrarUsuario : IRepositorioRegistrarUsuario
+    public class RepositorioRegistrarUsuario 
     {
         //readonly string pathUsuarios = @"..\Persistence\Data\Usuarios.json";
 

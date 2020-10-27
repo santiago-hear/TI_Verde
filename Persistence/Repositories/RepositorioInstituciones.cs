@@ -10,9 +10,6 @@ namespace Persistence.Repositories
 {
     public class RepositorioInstituciones : IRepositorioInstituciones
     {
-        //readonly string pathProductosEnVenta = @"..\Persistence\Data\ProductosEnVenta.json";
-        //readonly string pathTalleres = @"..\Persistence\Data\Talleres.json";
-        //readonly string pathDestrucciones = @"..\Persistence\Data\Destrucciones.json";
         readonly string pathInstituciones = @"..\Persistence\Data\Instituciones.json";
         readonly string institucionesString;
         string jsonString;
@@ -20,51 +17,95 @@ namespace Persistence.Repositories
 
         public RepositorioInstituciones()
         {
+            try
+            {
+                institucionesString = File.ReadAllText(pathInstituciones);
+                instituciones = System.Text.Json.JsonSerializer.Deserialize<List<Institucion>>(institucionesString);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             institucionesString = File.ReadAllText(pathInstituciones);
         }
 
         public List<Institucion> GetInstituciones()
         {
-            instituciones = System.Text.Json.JsonSerializer.Deserialize<List<Institucion>>(institucionesString);
             return instituciones;
         }
 
         public Institucion BuscarInstitucion(int Id)
         {
-            instituciones = System.Text.Json.JsonSerializer.Deserialize<List<Institucion>>(institucionesString);
             Institucion institucion = instituciones.FirstOrDefault(p => p.Id == Id);
             if (institucion == null)
             {
-                throw new AsignacionIncorrectaException("La institucion con id: " + Id + " no existe");
+                throw new InstitucionNoExisteException("La institucion con id: " + Id + " no existe");
             }
             return institucion;
         }
 
         public void RegistrarInstitucion(Institucion institucion)
         {
-            instituciones = System.Text.Json.JsonSerializer.Deserialize<List<Institucion>>(institucionesString);
-            instituciones.Add(institucion);
-            jsonString = System.Text.Json.JsonSerializer.Serialize(instituciones);
-            File.WriteAllText(pathInstituciones, jsonString);
+            try
+            {
+                instituciones.Add(institucion);
+                jsonString = System.Text.Json.JsonSerializer.Serialize(instituciones);
+                File.WriteAllText(pathInstituciones, jsonString);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public void EliminarInstitucion(int Id)
+        public void EliminarInstitucion(int IdInstitucion)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Institucion institucion = instituciones.Find(p => p.Id == IdInstitucion);
+                if (institucion == null)
+                {
+                    throw new InstitucionNoExisteException("La Institucion con id: " + IdInstitucion + "no se puede eliminar porque no existe");
+                }
+                instituciones.Remove(institucion);
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(instituciones);
+                File.WriteAllText(pathInstituciones, jsonString);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void DonarProducto(Donacion donacion, Institucion institucion)
         {
-            instituciones = System.Text.Json.JsonSerializer.Deserialize<List<Institucion>>(institucionesString);
-            foreach (Institucion inst in instituciones)
+            Institucion producto = instituciones.Find(p => p.Id == institucion.Id);
+            if (producto == null)
             {
-                if (inst.Id == institucion.Id)
+                throw new InstitucionNoExisteException("La Institucion con id: " + institucion.Id + "no existe");
+            }
+            try
+            {
+                jsonString = System.Text.Json.JsonSerializer.Serialize(instituciones);
+                File.WriteAllText(pathInstituciones, jsonString);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int GetMaxIdInstituciones()
+        {
+            int maxid = 0;
+            foreach (Institucion institucion in instituciones)
+            {
+                if (institucion.Id > maxid)
                 {
-                    inst.Recibidos.Add(donacion);
+                    maxid = institucion.Id;
                 }
             }
-            jsonString = System.Text.Json.JsonSerializer.Serialize(instituciones);
-            File.WriteAllText(pathInstituciones, jsonString);
+            return maxid;
         }
 
         //public void RegistrarDestruccion(Producto p)

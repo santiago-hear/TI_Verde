@@ -48,14 +48,41 @@ namespace Persistence.Repositories
             Donacion donacion = donaciones.FirstOrDefault(p => p.Id == id);
             if (donacion == null)
             {
-                //throw new DonacionNoExisteException(" donacion con id: " + id + " no existe");
+                throw new DonacionNoExisteException(" donacion con id: " + id + " no existe");
             }
             return donacion;
         }
 
-        public void EliminarDonacion(int id)
+        public void EliminarDonacion(int IdDonacion)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Donacion donacion = donaciones.Find(p => p.Id == IdDonacion);
+                if (donacion == null)
+                {
+                    throw new DonacionNoExisteException("La Donacion con id: " + IdDonacion + "no se puede eliminar porque no existe");
+                }
+                donaciones.Remove(donacion);
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(donaciones);
+                File.WriteAllText(pathDonaciones, jsonString);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int GetMaxIdDonaciones()
+        {
+            int maxid = 0;
+            foreach (Donacion donacion in donaciones)
+            {
+                if (donacion.Id > maxid)
+                {
+                    maxid = donacion.Id;
+                }
+            }
+            return maxid;
         }
     }
 }

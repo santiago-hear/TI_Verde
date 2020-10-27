@@ -9,7 +9,7 @@ namespace Domain.Usuario
         public string Nombre { get; set; }
         public string Nit { get; set; }
         public List<Donacion.Donacion> Recibidos { get; set; }
-        public List<Producto.Producto> Solicitudes { get; set; }
+        public List<TipoProducto.TipoProducto> Solicitudes { get; set; }
         public Institucion() { }
         public Institucion(int id, string nombre, string nit, string telefono, string correo, string celular, string direccion, string contrasena)
         { 
@@ -22,7 +22,7 @@ namespace Domain.Usuario
             this.Direccion = direccion;
             this.Contrasena = contrasena;
             this.Recibidos = new List<Donacion.Donacion>();
-            this.Solicitudes = new List<Producto.Producto>();
+            this.Solicitudes = new List<TipoProducto.TipoProducto>();
         }
     }
 }

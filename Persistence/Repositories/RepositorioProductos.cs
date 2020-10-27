@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using Domain.Producto;
 using System.Linq;
-using Domain.TipoProducto;
+using Domain.Usuario;
 
 namespace Persistence.Repositories
 {
     public class RepositorioProductos : IRepositorioProductos
     {
-        readonly string pathProductos = @"..\Persistence\Data\productos.json";
+        readonly string pathProductos = @"..\Persistence\Data\Productos.json";
         string productosString;
         private List<Producto> productos;
 
@@ -55,14 +55,35 @@ namespace Persistence.Repositories
 
         public void EliminarProducto(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Producto producto = productos.Find(p => p.Id == id);
+                if (producto == null)
+                {
+                    throw new ProductoNoExisteException("El producto con id: " + id + "no se puede eliminar porque no existe");
+                }
+                productos.Remove(producto);
+                string jsonString = System.Text.Json.JsonSerializer.Serialize(productos);
+                File.WriteAllText(pathProductos, jsonString);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public void ActualizarEstado(Producto producto, string estado)
+        public void ActualizarProducto(Producto productoAntiguo, Producto productoNuevo)
         {
             try
             {
-                productos.Find(p => p.Id == producto.Id).Estado = estado;
+                Producto producto = productos.Find(p => p.Id == productoAntiguo.Id);
+                if (producto == null)
+                {
+                    throw new ProductoNoExisteException("El producto con id: " + productoAntiguo.Id + " no existe");
+                }
+                productos.Remove(producto);
+                productos.Add(productoNuevo);
+                productos.Sort((x, y) => x.Id.CompareTo(y.Id));
                 string jsonString = System.Text.Json.JsonSerializer.Serialize(productos);
                 File.WriteAllText(pathProductos, jsonString);
             }
@@ -70,6 +91,19 @@ namespace Persistence.Repositories
             {
                 throw ex;
             }
+        }
+
+        public int GetMaxIdProductos()
+        {
+            int maxid = 0;
+            foreach (Producto producto in productos)
+            {
+                if (producto.Id > maxid)
+                {
+                    maxid = producto.Id;
+                }
+            }
+            return maxid;
         }
         //public List<Producto> ObtenerInforme(DateTime mes)
         //{

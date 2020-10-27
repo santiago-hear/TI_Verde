@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ApplicationCore;
 using ApplicationCore.PonerProductoEnVenta;
-using ApplicationCore.RegistrarUsuario;
 using Domain.Producto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,18 +10,15 @@ namespace Presentation.Controllers
     public class TiendaController : Controller
     {
         readonly ControlGestionarProducto controlGestionProducto;
-        //readonly ControlObtenerInformeMensual controlInforme;
-        //readonly ControlPonerProductoEnVenta ControlVenta;
-        //readonly ControlRegistrarUsuario ControlUsuarios;
-        readonly ControlAsignarProducto controlAsignar;
+        readonly ControlAsignarProducto controlAsignarProducto;
+        readonly ControlPonerProductoEnVenta ControlProductoVenta;
+
 
         public TiendaController()
         {
             controlGestionProducto = new ControlGestionarProducto();
-            //controlInforme = new ControlObtenerInformeMensual();
-            //ControlVenta = new ControlPonerProductoEnVenta();
-            //ControlUsuarios = new ControlRegistrarUsuario();
-            controlAsignar = new ControlAsignarProducto();
+            controlAsignarProducto = new ControlAsignarProducto();
+            ControlProductoVenta = new ControlPonerProductoEnVenta();
         }
         public IActionResult Index()
         {
@@ -33,39 +27,87 @@ namespace Presentation.Controllers
 
         public IActionResult GestionarProductos()
         {
-            ViewBag.Productos = controlGestionProducto.GetAllProductos();
+            try
+            {
+                ViewBag.Productos = controlGestionProducto.GetProductos();
+            }
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
             return View();
         }
 
         public IActionResult AsignarProducto()
         {
-            ViewBag.productosTaller = controlAsignar.DisponiblesParaTaller();
-            ViewBag.productosInstitucion = controlAsignar.DisponiblesParaInstitucion();
-            ViewBag.instituciones = controlAsignar.GetInstituciones();
-            ViewBag.talleres = controlAsignar.GetTalleres();
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
+            try
+            {
+                ViewBag.productosTaller = controlAsignarProducto.DisponiblesParaTaller();
+                ViewBag.productosInstitucion = controlAsignarProducto.DisponiblesParaInstitucion();
+                ViewBag.instituciones = controlAsignarProducto.GetInstituciones();
+                ViewBag.talleres = controlAsignarProducto.GetTalleres();
+                ViewBag.productosDestruccion = controlAsignarProducto.DisponiblesParaDestruccion();
+            }
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
             return View();
         }
         [HttpPost]
         public IActionResult AsignarATaller(int idtaller, int idProducto)
         {
-            ViewBag.productosTaller = controlAsignar.DisponiblesParaTaller();
-            ViewBag.productosInstitucion = controlAsignar.DisponiblesParaInstitucion();
-            ViewBag.instituciones = controlAsignar.GetInstituciones();
-            ViewBag.talleres = controlAsignar.GetTalleres();
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
-            controlAsignar.AsignarProductoTaller(idtaller, idProducto);
+            try
+            {
+                ViewBag.productosTaller = controlAsignarProducto.DisponiblesParaTaller();
+                ViewBag.productosInstitucion = controlAsignarProducto.DisponiblesParaInstitucion();
+                ViewBag.instituciones = controlAsignarProducto.GetInstituciones();
+                ViewBag.talleres = controlAsignarProducto.GetTalleres();
+                ViewBag.productosDestruccion = controlAsignarProducto.DisponiblesParaDestruccion();
+                controlAsignarProducto.AsignarProductoTaller(idtaller, idProducto);
+            }
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
             return View("AsignarProducto");
         }
+
         [HttpPost]
-        public IActionResult AsignarAInstitucion(int idInstitucion, int idProducto)
+        public IActionResult AsignarAInstitucion(int idInstitucion, int idProducto, string descripcionDonacion)
         {
-            ViewBag.productosTaller = controlAsignar.DisponiblesParaTaller();
-            ViewBag.productosInstitucion = controlAsignar.DisponiblesParaInstitucion();
-            ViewBag.instituciones = controlAsignar.GetInstituciones();
-            ViewBag.talleres = controlAsignar.GetTalleres();
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
-            controlAsignar.AsignarProductoInstitucion(idInstitucion, idProducto);
+            try
+            {
+                ViewBag.productosTaller = controlAsignarProducto.DisponiblesParaTaller();
+                ViewBag.productosInstitucion = controlAsignarProducto.DisponiblesParaInstitucion();
+                ViewBag.instituciones = controlAsignarProducto.GetInstituciones();
+                ViewBag.talleres = controlAsignarProducto.GetTalleres();
+                ViewBag.productosDestruccion = controlAsignarProducto.DisponiblesParaDestruccion();
+                controlAsignarProducto.AsignarProductoInstitucion(idInstitucion, idProducto, descripcionDonacion);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
+            return View("AsignarProducto");
+        }
+
+        [HttpPost]
+        public IActionResult AsignarADestruccion(string descripcionDestruccion, string imagenPrueba, int idProducto)
+        {
+            try
+            {
+                ViewBag.productosTaller = controlAsignarProducto.DisponiblesParaTaller();
+                ViewBag.productosInstitucion = controlAsignarProducto.DisponiblesParaInstitucion();
+                ViewBag.instituciones = controlAsignarProducto.GetInstituciones();
+                ViewBag.talleres = controlAsignarProducto.GetTalleres();
+                ViewBag.productosDestruccion = controlAsignarProducto.DisponiblesParaDestruccion();
+                controlAsignarProducto.AsignarProductoDestruccion(descripcionDestruccion, imagenPrueba, idProducto);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
             return View("AsignarProducto");
         }
         public IActionResult ConfigurarTipo()
@@ -82,7 +124,7 @@ namespace Presentation.Controllers
                 {
                     //ViewBag.productos = controlInforme.ObtenerInformeProductosMensual(mes);
                 }
-                catch (NoHayProductosMesException ex)
+                catch (Exception ex)
                 {
                     ViewBag.message = "Error: " + ex.Message;
                 }
@@ -94,28 +136,46 @@ namespace Presentation.Controllers
 
             return View();
         }
-
+        /////////////////////////////////////////////// PRODUCTOS EN VENTA /////////////////////////////////////////////////////
         public IActionResult ProductosEnVenta()
         {
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
-            //ViewBag.productosEnVenta = ControlVenta.getProductosEnVenta();
+            try
+            {
+                ViewBag.productosEnVenta = ControlProductoVenta.GetProductosEnVenta();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
+            return View();
+        }
+
+        public IActionResult PonerEnVenta()
+        {
+            try
+            {
+                ViewBag.productosParaVender = ControlProductoVenta.DisponoblesParaVenta();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
             return View();
         }
 
         [HttpPost]
-        public IActionResult PonerEnVenta(int id, float precio)
+        public IActionResult PonerEnVenta(int IdProducto, float precio)
         {
-            ViewBag.productos = controlGestionProducto.GetAllProductos();
             try
             {
-                //ControlVenta.PonerProuctoEnVenta(id, precio);
+                ControlProductoVenta.PonerProductoEnVenta(IdProducto, precio);
+                ViewBag.productosParaVender = ControlProductoVenta.DisponoblesParaVenta();
             }
-            catch (ProductoEnVentaException ex)
+            catch (Exception ex)
             {
                 ViewBag.message = "Error: " + ex.Message;
             }
-            //ViewBag.productosEnVenta = ControlVenta.getProductosEnVenta();
-            return View();
+            return View("ProductosEnVenta");
         }
 
         public IActionResult VerPagos()
@@ -133,7 +193,7 @@ namespace Presentation.Controllers
             return View();
         }
 
-        public IActionResult RealizarInspeccion()
+        public IActionResult RegistarInspeccion()
         {
             return View();
         }

@@ -12,7 +12,8 @@ namespace Domain.Producto
         void RegistrarProducto(Producto producto);
         Producto BuscarProducto(int id);
         void EliminarProducto(int id);
-        void ActualizarEstado(Producto producto, string estado);
+        int GetMaxIdProductos();
+        void ActualizarProducto(Producto productoAntiguo, Producto productoNuevo);
 
         //void RegistrarProducto(Producto producto);
         //int GetMaxId();

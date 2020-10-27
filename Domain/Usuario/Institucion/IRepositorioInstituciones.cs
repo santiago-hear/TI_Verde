@@ -12,6 +12,7 @@ namespace Domain.Producto
         void RegistrarInstitucion(Institucion institucion);
         Institucion BuscarInstitucion(int Id);
         void EliminarInstitucion(int Id);
+        int GetMaxIdInstituciones();
         void DonarProducto(Donacion.Donacion donacion, Institucion institucion);
         //bool GetProductoEnVenta(int id);
         //void PonerEnVenta(Producto producto);

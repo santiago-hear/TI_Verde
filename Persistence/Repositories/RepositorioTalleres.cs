@@ -41,7 +41,7 @@ namespace Persistence.Repositories
 
             if (taller == null)
             {
-                throw new AsignacionIncorrectaException("El taller con id: " + Id + " no existe");
+                //throw new AsignacionIncorrectaException("El taller con id: " + Id + " no existe");
             }
             return taller;
         }
@@ -49,6 +49,19 @@ namespace Persistence.Repositories
         public void EliminarTaller(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public int GetMaxIdTalleres()
+        {
+            int maxid = 0;
+            foreach (Taller taller in talleres)
+            {
+                if (taller.Id > maxid)
+                {
+                    maxid = taller.Id;
+                }
+            }
+            return maxid;
         }
 
         public List<Taller> GetTalleres()

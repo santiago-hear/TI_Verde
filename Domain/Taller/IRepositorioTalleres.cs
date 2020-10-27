@@ -10,6 +10,7 @@ namespace Domain.Taller
         void RegistrarTaller(Taller taller);
         Taller BuscarTaller(int id);
         void EliminarTaller(int id);
+        int GetMaxIdTalleres();
         void AsignarProducto(Producto.Producto producto, Taller taller);
     }
 }
