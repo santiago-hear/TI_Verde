@@ -107,43 +107,5 @@ namespace Persistence.Repositories
             }
             return maxid;
         }
-
-        //public void RegistrarDestruccion(Producto p)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public bool GetProductoEnVenta(int id)
-        //{
-        //    List<Producto> productos;
-        //    string productosString = File.ReadAllText(pathProductosEnVenta);
-        //    productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
-        //    Producto producto = productos.FirstOrDefault(p => p.Id == id);
-
-        //    if (producto != null)
-        //    {
-        //        throw new ProductoEnVentaException("El producto con id: " + id + " ya está en venta");
-        //    }
-        //    return false;
-        //}
-
-        //public void PonerEnVenta(Producto producto)
-        //{
-        //    List<Producto> productos;
-        //    string productosString = File.ReadAllText(pathProductosEnVenta);
-        //    productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
-        //    productos.Add(producto);
-        //    string jsonString = System.Text.Json.JsonSerializer.Serialize(productos);
-        //    File.WriteAllText(pathProductosEnVenta, jsonString);
-        //}
-
-        //public List<Producto> GetProductosEnVenta()
-        //{
-        //    List<Producto> productos;
-        //    string productosString = File.ReadAllText(pathProductosEnVenta);
-        //    productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
-
-        //    return productos;
-        //}
     }
 }

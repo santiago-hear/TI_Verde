@@ -8,17 +8,20 @@ namespace ApplicationCore
 {
     public class ControlObtenerInformeMensual
     {
-        readonly IRepositorioProductos repo = new RepositorioProductos();
-        //public List<Producto> ObtenerInformeProductosMensual(DateTime fecha)
-        //{
-        //    try
-        //    {
-        //        //return repo.ObtenerInforme(fecha);
-        //    }
-        //    catch(NoHayProductosMesException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+        readonly IRepositorioProductos repositorioProductos = new RepositorioProductos();
+
+        public List<Producto> ObtenerInformeMensualProductos(DateTime fecha)
+        {
+            try
+            {
+                List<Producto> productos = repositorioProductos.GetProductos();
+                List<Producto> informe = productos.FindAll(p => p.FechaIngreso.Date.Month == fecha.Month);
+                return informe;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

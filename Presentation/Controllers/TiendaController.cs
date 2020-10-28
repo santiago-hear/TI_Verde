@@ -14,7 +14,7 @@ namespace Presentation.Controllers
         readonly ControlAsignarProducto controlAsignarProducto;
         readonly ControlPonerProductoEnVenta ControlProductoVenta;
         readonly ControlConfigurarTipoProducto controlTiposProductos;
-
+        readonly ControlObtenerInformeMensual controlInforme;
 
         public TiendaController()
         {
@@ -22,6 +22,7 @@ namespace Presentation.Controllers
             controlAsignarProducto = new ControlAsignarProducto();
             ControlProductoVenta = new ControlPonerProductoEnVenta();
             controlTiposProductos = new ControlConfigurarTipoProducto();
+            controlInforme = new ControlObtenerInformeMensual();
         }
         public IActionResult Index()
         {
@@ -153,7 +154,7 @@ namespace Presentation.Controllers
             {
                 try
                 {
-                    //ViewBag.productos = controlInforme.ObtenerInformeProductosMensual(mes);
+                    ViewBag.informe = controlInforme.ObtenerInformeMensualProductos(mes);
                 }
                 catch (Exception ex)
                 {
@@ -162,9 +163,8 @@ namespace Presentation.Controllers
             }
             else
             {
-                ViewBag.productos = new List<Producto>();
+                ViewBag.informe = new List<Producto>();
             }
-
             return View();
         }
         /////////////////////////////////////////////// PRODUCTOS EN VENTA /////////////////////////////////////////////////////

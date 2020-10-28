@@ -105,25 +105,5 @@ namespace Persistence.Repositories
             }
             return maxid;
         }
-        //public List<Producto> ObtenerInforme(DateTime mes)
-        //{
-        //    List<Producto> productosDevuelta =  new List<Producto>();
-        //    string productosString = File.ReadAllText(pathProductos);
-        //    productos = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(productosString);
-        //    for (int i = 0; i < productos.Count; i++)
-        //    {
-        //        Producto product = productos[i];
-
-        //        if (product.FechaIngreso.Month == mes.Month) {
-        //            productosDevuelta.Add(product);
-        //        }
-        //    }
-
-        //    if (productosDevuelta.Count() == 0)
-        //    {
-        //        throw new NoHayProductosMesException("No hay productos registrados para el mes: " + mes.Month);
-        //    }
-        //    return productosDevuelta;
-        //}
     }
 }

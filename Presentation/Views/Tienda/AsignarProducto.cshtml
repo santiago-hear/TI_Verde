@@ -86,13 +86,6 @@ else
                         </tr>}
                             </tbody>
                         </table>
-                        @*<select class="form-control" id="institucion" name="idInstitucion" required>
-                            <option disabled selected value="">Seleccione la institucion</option>
-                            @foreach (Domain.Usuario.Institucion i in ViewBag.instituciones)
-                            {
-                                <option value="@i.Id">@i.Id @i.Nombre, direccion: @i.Direccion </option>
-                            }
-                        </select>*@
                         @if (ViewBag.instituciones.Count == 0)
                         {
             <div class="alert alert-warning mt-2" role="alert">
