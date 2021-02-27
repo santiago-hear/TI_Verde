@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using Domain.Destruccion;
 using Domain.Donacion;
+using Microsoft.Extensions.Logging;
+using Serilog.Core;
 
 namespace ApplicationCore
 {
@@ -36,7 +38,8 @@ namespace ApplicationCore
             }
             catch(Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -49,7 +52,8 @@ namespace ApplicationCore
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -67,7 +71,8 @@ namespace ApplicationCore
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -82,7 +87,8 @@ namespace ApplicationCore
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
         public List<Institucion> GetInstituciones()
@@ -94,7 +100,8 @@ namespace ApplicationCore
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
         public void AsignarProductoInstitucion(int IdInstitucion, int IdProducto, string descripcionDonacion)
@@ -114,7 +121,8 @@ namespace ApplicationCore
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -129,7 +137,8 @@ namespace ApplicationCore
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -148,7 +157,8 @@ namespace ApplicationCore
             }
             catch(Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
     }

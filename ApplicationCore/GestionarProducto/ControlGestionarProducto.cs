@@ -24,7 +24,8 @@ namespace ApplicationCore
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
             
         }
@@ -40,7 +41,8 @@ namespace ApplicationCore
             }
             catch(Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -52,7 +54,8 @@ namespace ApplicationCore
             }
             catch (InstitucionNoExisteException ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
     }

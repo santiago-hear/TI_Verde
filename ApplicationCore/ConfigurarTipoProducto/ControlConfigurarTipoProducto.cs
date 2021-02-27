@@ -25,7 +25,8 @@ namespace ApplicationCore.ConfigurarTipoProducto
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
         public List<List<string>> GetTiposProductos()
@@ -46,7 +47,8 @@ namespace ApplicationCore.ConfigurarTipoProducto
             }
             catch(Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -64,7 +66,8 @@ namespace ApplicationCore.ConfigurarTipoProducto
             }
             catch(Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
     }

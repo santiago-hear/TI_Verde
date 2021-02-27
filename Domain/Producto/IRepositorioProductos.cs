@@ -15,11 +15,5 @@ namespace Domain.Producto
         int GetMaxIdProductos();
         void ActualizarProducto(Producto productoAntiguo, Producto productoNuevo);
 
-        //void RegistrarProducto(Producto producto);
-        //int GetMaxId();
-        //Producto GetProducto(int id);
-        //List<Producto> GetAllProductos();
-        //List<Producto> ObtenerInforme(DateTime fecha);
-
     }
 }

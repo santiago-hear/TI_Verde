@@ -9,11 +9,11 @@ namespace Persistence.Repositories
     public class RepositorioDonaciones : IRepositorioDonaciones
     {
         readonly string pathDonaciones = @"..\Persistence\Data\Donaciones.json";
-        string donacionesString;
-        private List<Donacion> donaciones;
+        readonly private List<Donacion> donaciones;
 
         public RepositorioDonaciones()
         {
+            string donacionesString;
             try
             {
                 donacionesString = File.ReadAllText(pathDonaciones);
@@ -21,7 +21,8 @@ namespace Persistence.Repositories
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -40,7 +41,8 @@ namespace Persistence.Repositories
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
         public Donacion BuscarDonacion(int id)
@@ -68,7 +70,8 @@ namespace Persistence.Repositories
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 

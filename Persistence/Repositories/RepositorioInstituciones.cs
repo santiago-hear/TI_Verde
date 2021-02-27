@@ -11,12 +11,12 @@ namespace Persistence.Repositories
     public class RepositorioInstituciones : IRepositorioInstituciones
     {
         readonly string pathInstituciones = @"..\Persistence\Data\Instituciones.json";
-        readonly string institucionesString;
         string jsonString;
         private List<Institucion> instituciones;
 
         public RepositorioInstituciones()
         {
+            string institucionesString;
             try
             {
                 institucionesString = File.ReadAllText(pathInstituciones);

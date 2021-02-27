@@ -8,7 +8,7 @@ namespace ApplicationCore.RegistrarUsuario
 {
     public class ControlRegistrarUsuario
     {
-        RepositorioRegistrarUsuario repo = new RepositorioRegistrarUsuario();
+        readonly RepositorioRegistrarUsuario repo = new RepositorioRegistrarUsuario();
 
         //public void RegistrarUsuario(string cedula, string nombre,string apellido, string correo, string celular, string contrasena)
         //{

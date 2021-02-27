@@ -34,7 +34,8 @@ namespace ApplicationCore.PonerProductoEnVenta
             }
             catch(Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 

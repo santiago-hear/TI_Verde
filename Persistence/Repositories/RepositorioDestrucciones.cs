@@ -9,11 +9,11 @@ namespace Persistence.Repositories
     public class RepositorioDestrucciones : IRepositorioDestrucciones
     {
         readonly string pathDestrucciones = @"..\Persistence\Data\Destrucciones.json";
-        string destruccionesString;
-        private List<Destruccion> destrucciones;
+        readonly private List<Destruccion> destrucciones;
 
         public RepositorioDestrucciones()
         {
+            string destruccionesString;
             try
             {
                 destruccionesString = File.ReadAllText(pathDestrucciones);
@@ -21,7 +21,8 @@ namespace Persistence.Repositories
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -40,7 +41,8 @@ namespace Persistence.Repositories
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
         public Destruccion BuscarDestruccion(int id)
@@ -68,7 +70,8 @@ namespace Persistence.Repositories
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex);
+                throw;
             }
         }
 

@@ -9,8 +9,8 @@ namespace Tests.UnitTests
 {
     class GestionarProductoTest
     {
+        /*
         #pragma warning disable IDE0052 // Remove unread private members
-        private readonly ControlGestionarProducto ControlProducto = new ControlGestionarProducto();
         #pragma warning restore IDE0052 // Remove unread private members
         [Test]
         public void ProductoExiste()
@@ -24,6 +24,7 @@ namespace Tests.UnitTests
             //List<Producto> Productos = ControlProducto.GetAllProductos();
             //Assert.That(Productos, Is.Not.Null);
         }
+        */
 
     }
 }
