@@ -8,5 +8,20 @@
     "Id": 2,
     "Nombre": "Televisores",
     "Descripcion": "Televisores y Smart TV"
+  },
+  {
+    "Id": 3,
+    "Nombre": "Conmputadores",
+    "Descripcion": "Computadores de todo tipo, portatiles, computadores de mesa y partes y accesorios de los mismos"
+  },
+  {
+    "Id": 4,
+    "Nombre": "Electrodomesticos",
+    "Descripcion": "Electrodomesticos de cocina y de hogar"
+  },
+  {
+    "Id": 5,
+    "Nombre": "Consolas",
+    "Descripcion": "Dispositivos para videojuegos, partes y accesorios"
   }
 ]

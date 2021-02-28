@@ -41,6 +41,33 @@ namespace Presentation.Controllers
             }
             return View();
         }
+        public IActionResult RegistrarProducto()
+        {
+            try
+            {
+                ViewBag.TiposProductos = controlGestionProducto.GetTiposProductos();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RegistrarProducto(string descripcion, string marca, int tiempoDeUso, int categoria, string referencia)
+        {
+            try
+            {
+                controlGestionProducto.RegistrarProducto(descripcion, marca, tiempoDeUso, categoria, referencia);
+                ViewBag.Productos = controlGestionProducto.GetProductos();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+            }
+            return View("GestionarProductos");
+        }
 
         public IActionResult AsignarProducto()
         {

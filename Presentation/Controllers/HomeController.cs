@@ -50,9 +50,9 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegistrarProducto(string descripcion, string marca, int tiempoDeUso, TipoProducto categoria, string referencia)
+        public IActionResult RegistrarProducto(string descripcion, string marca, int tiempoDeUso, int Idcategoria, string referencia)
         {
-            //controlGestionProducto.RegistrarProducto(descripcion, marca, tiempoDeUso, categoria,referencia);
+            controlGestionProducto.RegistrarProducto(descripcion, marca, tiempoDeUso, Idcategoria, referencia);
             return View();
         }
 

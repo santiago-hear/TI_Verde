@@ -45,24 +45,24 @@ namespace Persistence.Repositories
                 throw;
             }
         }
-        public Destruccion BuscarDestruccion(int id)
+        public Destruccion BuscarDestruccion(int Id)
         {
-            Destruccion destruccion = destrucciones.FirstOrDefault(p => p.Id == id);
+            Destruccion destruccion = destrucciones.FirstOrDefault(p => p.Id == Id);
             if (destruccion == null)
             {
-                throw new DestruccionNoExisteException("La destruccion con id: " + id + " no existe");
+                throw new DestruccionNoExisteException("La destruccion con id: " + Id + " no existe");
             }
             return destruccion;
         }
 
-        public void EliminarDestruccion(int IdDestruccion)
+        public void EliminarDestruccion(int Id)
         {
             try
             {
-                Destruccion institucion = destrucciones.Find(p => p.Id == IdDestruccion);
+                Destruccion institucion = destrucciones.Find(p => p.Id == Id);
                 if (institucion == null)
                 {
-                    throw new DestruccionNoExisteException("La Destruccion con id: " + IdDestruccion + "no se puede eliminar porque no existe");
+                    throw new DestruccionNoExisteException("La Destruccion con id: " + Id + "no se puede eliminar porque no existe");
                 }
                 destrucciones.Remove(institucion);
                 string jsonString = System.Text.Json.JsonSerializer.Serialize(destrucciones);

@@ -45,24 +45,24 @@ namespace Persistence.Repositories
                 throw;
             }
         }
-        public Donacion BuscarDonacion(int id)
+        public Donacion BuscarDonacion(int Id)
         {
-            Donacion donacion = donaciones.FirstOrDefault(p => p.Id == id);
+            Donacion donacion = donaciones.FirstOrDefault(p => p.Id == Id);
             if (donacion == null)
             {
-                throw new DonacionNoExisteException(" donacion con id: " + id + " no existe");
+                throw new DonacionNoExisteException(" donacion con id: " + Id + " no existe");
             }
             return donacion;
         }
 
-        public void EliminarDonacion(int IdDonacion)
+        public void EliminarDonacion(int Id)
         {
             try
             {
-                Donacion donacion = donaciones.Find(p => p.Id == IdDonacion);
+                Donacion donacion = donaciones.Find(p => p.Id == Id);
                 if (donacion == null)
                 {
-                    throw new DonacionNoExisteException("La Donacion con id: " + IdDonacion + "no se puede eliminar porque no existe");
+                    throw new DonacionNoExisteException("La Donacion con id: " + Id + "no se puede eliminar porque no existe");
                 }
                 donaciones.Remove(donacion);
                 string jsonString = System.Text.Json.JsonSerializer.Serialize(donaciones);

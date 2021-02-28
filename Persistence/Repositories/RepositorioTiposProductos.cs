@@ -53,7 +53,7 @@ namespace Persistence.Repositories
             TipoProducto tipoProducto = tiposProductos.FirstOrDefault(p => p.Id == id);
             if (tipoProducto == null)
             {
-                //throw new TipoProductoNoExisteException("La tipoProducto con id: " + id + " no existe");
+                throw new TipoProductoNoExisteException("El tipoProducto con id: " + id + " no existe");
             }
             return tipoProducto;
         }
