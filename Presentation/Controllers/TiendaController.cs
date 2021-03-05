@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using ApplicationCore;
+using ApplicationCore.GestionarProducto;
 using ApplicationCore.ConfigurarTipoProducto;
 using ApplicationCore.PonerProductoEnVenta;
+using ApplicationCore.AsignarProducto;
+using ApplicationCore.ObtenerInformeMensual;
 using Domain.Producto;
 using Microsoft.AspNetCore.Mvc;
 

@@ -5,7 +5,7 @@ using Domain.TipoProducto;
 using Domain.Usuario;
 using Persistence.Repositories;
 
-namespace ApplicationCore
+namespace ApplicationCore.GestionarProducto
 {
     public class ControlGestionarProducto
     {

@@ -4,7 +4,7 @@ using System.Text;
 using Domain.Producto;
 using Persistence.Repositories;
 
-namespace ApplicationCore
+namespace ApplicationCore.ObtenerInformeMensual
 {
     public class ControlObtenerInformeMensual
     {

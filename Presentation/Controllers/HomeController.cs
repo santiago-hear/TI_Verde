@@ -10,6 +10,9 @@ using ApplicationCore;
 using Domain.Producto;
 using ApplicationCore.PonerProductoEnVenta;
 using ApplicationCore.RegistrarUsuario;
+using ApplicationCore.ObtenerInformeMensual;
+using ApplicationCore.AsignarProducto;
+using ApplicationCore.GestionarProducto;
 using Domain.Usuario;
 using Domain.TipoProducto;
 

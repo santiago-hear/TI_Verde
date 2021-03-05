@@ -41,7 +41,7 @@ namespace Persistence.Repositories
 
             if (taller == null)
             {
-                //throw new AsignacionIncorrectaException("El taller con id: " + Id + " no existe");
+                throw new TallerNoExisteException("El taller con id: " + Id + " no existe");
             }
             return taller;
         }
@@ -76,6 +76,20 @@ namespace Persistence.Repositories
             talleres.Add(taller);
             jsonString = System.Text.Json.JsonSerializer.Serialize(talleres);
             File.WriteAllText(pathTalleres, jsonString);
+        }
+
+        public List<Producto> GetAsignaciones(int id)
+        {
+            try
+            {
+                return this.BuscarTaller(id).Asignaciones;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            
         }
     }
 }

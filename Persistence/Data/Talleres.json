@@ -1,1 +1,38 @@
-[{"Id":1,"Nombre":"Taller Centro","Ciudad":"Manizales","Direccion":"Cra 23 # 19 - 12","Telefono":"8892817","Asignaciones":[{"Id":2,"Descripcion":"Celular sin bateria","FechaIngreso":"2020-10-10T23:34:26.5181663-05:00","Marca":"Samsung","TiempoDeUso":18,"TipoProducto":{"Id":1,"Nombre":"Celulares","Descripcion":"Todo tipo de celulares y dispositivos moviles"},"Referencia":"Galaxy A2","PrecioCompra":0,"PrecioVenta":0,"Estado":"Aceptado","Nombre":"Samsung Galaxy A2"}],"Reparaciones":[]},{"Id":2,"Nombre":"Taller Buenavista","Ciudad":"Pereira","Direccion":"Cra 12 # 10 - 22","Telefono":"^8462712","Asignaciones":[],"Reparaciones":[]}]
+[
+  {
+    "Id": 1,
+    "Nombre": "Taller Centro",
+    "Ciudad": "Manizales",
+    "Direccion": "Cra 23 # 19 - 12",
+    "Telefono": "8892817",
+    "Asignaciones": [
+      {
+        "Id": 2,
+        "Descripcion": "Celular sin bateria",
+        "FechaIngreso": "2020-10-10T23:34:26.5181663-05:00",
+        "Marca": "Samsung",
+        "TiempoDeUso": 18,
+        "TipoProducto": {
+          "Id": 1,
+          "Nombre": "Celulares",
+          "Descripcion": "Todo tipo de celulares y dispositivos moviles"
+        },
+        "Referencia": "Galaxy A2",
+        "PrecioCompra": 0,
+        "PrecioVenta": 0,
+        "Estado": "Taller",
+        "Nombre": "Samsung Galaxy A2"
+      }
+    ],
+    "Reparaciones": []
+  },
+  {
+    "Id": 2,
+    "Nombre": "Taller Buenavista",
+    "Ciudad": "Pereira",
+    "Direccion": "Cra 12 # 10 - 22",
+    "Telefono": "^8462712",
+    "Asignaciones": [],
+    "Reparaciones": []
+  }
+]

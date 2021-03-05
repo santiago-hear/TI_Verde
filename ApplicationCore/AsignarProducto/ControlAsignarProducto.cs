@@ -9,7 +9,7 @@ using Domain.Donacion;
 using Microsoft.Extensions.Logging;
 using Serilog.Core;
 
-namespace ApplicationCore
+namespace ApplicationCore.AsignarProducto
 {
     public class ControlAsignarProducto
     {

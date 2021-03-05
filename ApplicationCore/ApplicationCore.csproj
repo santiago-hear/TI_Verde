@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ConsultarAsignacion\" />
     <Folder Include="ConsultarInventario\" />
     <Folder Include="GestionarInspeccion\" />
     <Folder Include="RealizarSeguimiento\" />
