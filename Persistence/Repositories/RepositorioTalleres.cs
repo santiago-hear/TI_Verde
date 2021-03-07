@@ -1,4 +1,5 @@
 ﻿using Domain.Producto;
+using Domain.Reparacion;
 using Domain.Taller;
 using System;
 using System.Collections.Generic;
@@ -18,16 +19,16 @@ namespace Persistence.Repositories
         public RepositorioTalleres()
         {
             talleresString = File.ReadAllText(pathTalleres);
+            talleres = System.Text.Json.JsonSerializer.Deserialize<List<Taller>>(talleresString);
         }
 
         public void AsignarProducto(Producto producto, Taller taller)
         {
-            talleres = System.Text.Json.JsonSerializer.Deserialize<List<Taller>>(talleresString);
             foreach (Taller t in talleres)
             {
                 if (taller.Id == t.Id)
                 {
-                    taller.Asignaciones.Add(producto);
+                    t.Asignaciones.Add(producto);
                 }
             }
             jsonString = System.Text.Json.JsonSerializer.Serialize(talleres);
@@ -36,7 +37,6 @@ namespace Persistence.Repositories
 
         public Taller BuscarTaller(int Id)
         {
-            talleres = System.Text.Json.JsonSerializer.Deserialize<List<Taller>>(talleresString);
             Taller taller = talleres.FirstOrDefault(p => p.Id == Id);
 
             if (taller == null)
@@ -66,13 +66,10 @@ namespace Persistence.Repositories
 
         public List<Taller> GetTalleres()
         {
-            talleres = System.Text.Json.JsonSerializer.Deserialize<List<Taller>>(talleresString);
             return talleres;
         }
-
         public void RegistrarTaller(Taller taller)
         {
-            talleres = System.Text.Json.JsonSerializer.Deserialize<List<Taller>>(talleresString);
             talleres.Add(taller);
             jsonString = System.Text.Json.JsonSerializer.Serialize(talleres);
             File.WriteAllText(pathTalleres, jsonString);
@@ -82,14 +79,56 @@ namespace Persistence.Repositories
         {
             try
             {
-                return this.BuscarTaller(id).Asignaciones;
+                return BuscarTaller(id).Asignaciones;
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
-            
+        }
+
+        public List<Reparacion> GetReparaciones(int id)
+        {
+            try
+            {
+                return this.BuscarTaller(id).Reparaciones;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        public void RegistrarReparacion(Reparacion reparacion, int id)
+        {
+            try
+            {
+                foreach (Taller t in talleres)
+                {
+                    if (id == t.Id)
+                    {
+                        t.Reparaciones.Add(reparacion);
+                    }
+                }
+                Taller taller = talleres.FirstOrDefault(t => t.Id == id);
+                Taller tallerN = taller;
+                talleres.Remove(taller);
+                List<Producto> asignaciones = tallerN.Asignaciones;
+                Producto producto = asignaciones.FirstOrDefault(p => p.Id == reparacion.ProductoReparado.Id);
+                asignaciones.Remove(producto);
+                producto.Estado = "Reparado";
+                asignaciones.Add(producto);
+                tallerN.Asignaciones = asignaciones;
+                talleres.Add(tallerN);
+                jsonString = System.Text.Json.JsonSerializer.Serialize(talleres);
+                File.WriteAllText(pathTalleres, jsonString);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

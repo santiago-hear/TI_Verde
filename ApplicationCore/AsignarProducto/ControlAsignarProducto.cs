@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using Domain.Destruccion;
 using Domain.Donacion;
-using Microsoft.Extensions.Logging;
-using Serilog.Core;
 
 namespace ApplicationCore.AsignarProducto
 {
@@ -61,7 +59,7 @@ namespace ApplicationCore.AsignarProducto
         {
             try
             {
-                string estado = "En Taller";
+                string estado = "Taller";
                 Producto producto = repositorioProductos.BuscarProducto(IdProducto);
                 Producto productoActualizado = producto;
                 Taller taller = repositorioTalleres.BuscarTaller(IdTaller);
@@ -83,7 +81,7 @@ namespace ApplicationCore.AsignarProducto
             try
             {
                 List<Producto> productos = repositorioProductos.GetProductos();
-                return productos.FindAll(p => p.Estado.Equals("Reparado Con Fallas"));
+                return productos.FindAll(p => p.Estado.Equals("Fallas"));
             }
             catch (Exception ex)
             {
@@ -133,7 +131,7 @@ namespace ApplicationCore.AsignarProducto
             try
             {
                 List<Producto> productos = repositorioProductos.GetProductos();
-                return productos.FindAll(p => p.Estado.Equals("Sin Arreglo"));
+                return productos.FindAll(p => p.Estado.Equals("Dañado"));
             }
             catch (Exception ex)
             {

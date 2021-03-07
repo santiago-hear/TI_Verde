@@ -13,6 +13,8 @@ namespace Domain.Taller
         int GetMaxIdTalleres();
         void AsignarProducto(Producto.Producto producto, Taller taller);
         List<Producto.Producto> GetAsignaciones(int id);
+        List<Reparacion.Reparacion> GetReparaciones(int id);
+        void RegistrarReparacion(Reparacion.Reparacion reparacion, int id);
 
     }
 }

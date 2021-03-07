@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ }
+
+<h1>Registrar Reparación</h1>
+@if (ViewBag.ProductosTaller.Count == 0)
+{
+    <div class="alert alert-warning mt-2" role="alert">
+        No hay productos para mostrar
+    </div>
+}
+<form action="RegistrarReparacion" method="post">
+    <div class="form-group">
+        <label for="producto">Producto Reparado: </label>
+        <select class="form-control" id="productId" name="productId" required>
+            <option selected disabled>Seleccionar producto reparado</option>
+            @foreach (Domain.Producto.Producto p in ViewBag.ProductosTaller)
+            {
+                <option value="@p.Id">@p.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="descripcion">Descripcion: </label>
+        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Ingrese la descripción de la reparación (qué se hizo)" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="marca">Costo: </label>
+        <input type="text" class="form-control" id="costo" name="costo" placeholder="Ingrese el costo de la reparación" required>
+    </div>
+    <div class="form-group">
+        <label for="marca">Imagen: </label>
+        <input type="text" class="form-control" id="costo" name="costo" placeholder="Ingrese la ruta de la imagen">
+    </div>
+    @if (ViewBag.ProductosTaller.Count == 0)
+    {
+        <button type="submit" class="btn btn-dark" disabled>Registrar</button>
+    }
+    else
+    {
+        <button type="submit" class="btn btn-dark">Registrar</button>
+    }
+</form>
+
+<p>@ViewBag.Message</p>
